@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MSFSTouchPanel.FSConnector</RootNamespace>
+    <AssemblyName>MSFSTouchPanel.FSConnector</AssemblyName>
+    <Platforms>AnyCPU;x64</Platforms>
+	<DebugType Condition=" '$(Configuration)' == 'Release' ">None</DebugType>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ContentWithTargetPath Include="resources\SimConnect.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>SimConnect.dll</TargetPath>
+		</ContentWithTargetPath>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\shared\shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Microsoft.FlightSimulator.SimConnect">
+	    <HintPath>resources\managed\Microsoft.FlightSimulator.SimConnect.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

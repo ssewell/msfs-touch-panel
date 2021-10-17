@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MSFSTouchPanel.SimConnectAgent</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyName>MSFSTouchPanel.SimConnectAgent</AssemblyName>
+	<DebugType Condition=" '$(Configuration)' == 'Release' ">None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoordinateSharp" Version="2.11.1.1" />
+    <PackageReference Include="ini-parser-netstandard" Version="2.5.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\arduinoagent\arduinoagent.csproj" />
+	  <ProjectReference Include="..\fsconnector\fsconnector.csproj" />
+	  <ProjectReference Include="..\fsuipcagent\fsuipcagent.csproj" />
+	  <ProjectReference Include="..\shared\shared.csproj" />
+	</ItemGroup>
+
+</Project>
