@@ -7,7 +7,7 @@ namespace MSFSTouchPanel.SimConnectAgent
 {
     public class ActionLogicArduino
     {
-        public static void ExecuteCommand(SimConnector simConnector, FsuipcProvider fsuipcProvider, ActionEvent clientAction, InputAction encoderAction, InputName encoderName)
+        public static void ExecuteCommand(SimConnector simConnector, FsuipcProvider fsuipcProvider, ActionEvent clientAction, InputAction encoderAction, InputName encoderName, int acceleration)
         {
             ActionEventType actionEventType = ActionEventType.SimConnect;
             ActionEvent actionEvent = ActionEvent.NO_ACTION;
@@ -278,6 +278,28 @@ namespace MSFSTouchPanel.SimConnectAgent
                 case ActionEvent.AS1000_PFD_MENU_Push:
                 case ActionEvent.AS1000_PFD_ENT_Push:
                 case ActionEvent.AS1000_PFD_CLR:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_1:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_2:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_3:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_4:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_5:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_6:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_7:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_8:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_9:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_10:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_11:
+                case ActionEvent.AS1000_PFD_SOFTKEYS_12:
+                case ActionEvent.AS1000_MID_COM_1_Push:
+                case ActionEvent.AS1000_MID_COM_2_Push:
+                case ActionEvent.AS1000_MID_COM_Mic_1_Push:
+                case ActionEvent.AS1000_MID_COM_Mic_2_Push:
+                case ActionEvent.AS1000_MID_COM_Swap_1_2_Push:
+                case ActionEvent.AS1000_MID_ADF_Push:
+                case ActionEvent.AS1000_MID_DME_Push:
+                case ActionEvent.AS1000_MID_NAV_1_Push:
+                case ActionEvent.AS1000_MID_NAV_2_Push:
+                case ActionEvent.AS1000_MID_AUX_Push:
                 case ActionEvent.CUSTOM_PFD_FMS_SELECTED:
                     actionEventType = ActionEventType.Fsuipc;
                     switch (encoderName)
@@ -353,6 +375,18 @@ namespace MSFSTouchPanel.SimConnectAgent
                 case ActionEvent.AS1000_MFD_MENU_Push:
                 case ActionEvent.AS1000_MFD_ENT_Push:
                 case ActionEvent.AS1000_MFD_CLR:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_1:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_2:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_3:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_4:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_5:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_6:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_7:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_8:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_9:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_10:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_11:
+                case ActionEvent.AS1000_MFD_SOFTKEYS_12:
                 case ActionEvent.CUSTOM_MFD_FMS_SELECTED:
                     actionEventType = ActionEventType.Fsuipc;
                     switch (encoderName)
@@ -418,6 +452,7 @@ namespace MSFSTouchPanel.SimConnectAgent
                                     actionEvent = ActionEvent.AS1000_MFD_JOYSTICK_RIGHT;
                                     break;
                             }
+                            acceleration = 2;
                             break;
                     }
                     break;
@@ -470,6 +505,36 @@ namespace MSFSTouchPanel.SimConnectAgent
                             break;
                     }
                     break;
+                case ActionEvent.CUSTOM_PFD_HEADING_KNOB_PUSH:
+                case ActionEvent.CUSTOM_MFD_HEADING_KNOB_PUSH:
+                    actionEventType = ActionEventType.SimConnect;
+                    switch (encoderAction)
+                    {
+                        case InputAction.CW:
+                            actionEvent = encoderName == InputName.Encoder1 ? ActionEvent.KEY_HEADING_BUG_INC : ActionEvent.KEY_HEADING_BUG_SET;
+                            acceleration = 1;
+                            if (encoderName == InputName.Encoder2)
+                            {
+                                var heading = (simConnector.SimData.AUTOPILOT_HEADING_LOCK_DIR + 10) % 360;
+                                commandData = Convert.ToUInt32(heading);
+                            }
+                            break;
+                        case InputAction.CCW:
+                            actionEvent = encoderName == InputName.Encoder1 ? ActionEvent.KEY_HEADING_BUG_DEC : ActionEvent.KEY_HEADING_BUG_SET;
+                            acceleration = 1;
+                            if (encoderName == InputName.Encoder2)
+                            {
+                                var heading = simConnector.SimData.AUTOPILOT_HEADING_LOCK_DIR - 10;
+                                if (heading < 0) heading = 360 + heading;
+                                commandData = Convert.ToUInt32(heading);
+                            }
+                            break;
+                        case InputAction.SW:
+                            actionEvent = ActionEvent.KEY_HEADING_BUG_SET;
+                            commandData = Convert.ToUInt32(simConnector.SimData.PLANE_HEADING_DEGREES_MAGNETIC);
+                            break;
+                    }
+                    break;
             }
 
             if (actionEvent != ActionEvent.NO_ACTION)
@@ -477,10 +542,10 @@ namespace MSFSTouchPanel.SimConnectAgent
                 switch (actionEventType)
                 {
                     case ActionEventType.SimConnect:
-                        simConnector.TransmitActionEvent(actionEvent, commandData);
+                        simConnector.TransmitActionEvent(actionEvent, commandData, acceleration > 3 ? 3 : acceleration);
                         break;
                     case ActionEventType.Fsuipc:
-                        ActionLogicFsuipc.ExecuteCalculatorCodeHVar(fsuipcProvider, actionEvent, 1);
+                        ActionLogicFsuipc.ExecuteCalculatorCodeHVar(fsuipcProvider, actionEvent, acceleration);
                         break;
                 }
             }

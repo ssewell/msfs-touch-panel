@@ -8,22 +8,26 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import ApplicationBar from './Components/ApplicationBar';
 import PanelContainer from './Components/Panel/PanelContainer';
-import G1000Panel from './Experimental/g1000Panel';
+import G1000PfdPanel from './Experimental/g1000PfdPanel';
+import G1000NXiPanel from './Experimental/g1000NXiPanel';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    rootUseMediaQueryWidth: {
         [theme.breakpoints.up('sm')]: { fontSize: '12px' },
         [theme.breakpoints.up('md')]: { fontSize: '16px' },
         [theme.breakpoints.up('lg')]: { fontSize: '18px' },
         [theme.breakpoints.up('xl')]: { fontSize: '18px' },
         padding: 0,
-    },
-    rootUseMediaQueryWidth: {
         backgroundColor: theme.palette.background.default,
         height: '100vh',
         margin: '0 auto',
     },
     rootFullWidth: {
+        [theme.breakpoints.up('sm')]: { fontSize: '12px' },
+        [theme.breakpoints.up('md')]: { fontSize: '16px' },
+        [theme.breakpoints.up('lg')]: { fontSize: '18px' },
+        [theme.breakpoints.up('xl')]: { fontSize: '18px' },
+        padding: 0,
         maxWidth: '100vw',
         display: 'grid',
         overflow: 'hidden',
@@ -42,9 +46,18 @@ const useStyles = makeStyles((theme) => ({
     aspectRatioPanelContainer: {
         paddingTop: '35px',
     },
-    aspectRatioContent: {
+    aspectRatioContentPfd: {
         width: '100%',
-        aspectRatio: '1412/917',            // PFD / MFD background image aspect ratio (width/height)
+        aspectRatio: '1408/914',            // PFD with mid panel background image aspect ratio (width/height)
+        overflow: 'hidden',
+        display: 'flex',
+        maxHeight: '95vh',
+        margin: '0 auto',
+        backgroundColor: 'transparent'
+    },
+    aspectRatioContentMfd: {
+        width: '100%',
+        aspectRatio: '1408/914',            // PFD/MFD background image aspect ratio (width/height)
         overflow: 'hidden',
         display: 'flex',
         maxHeight: '95vh',
@@ -71,10 +84,10 @@ const App = () => {
     }
 
     return useMemo(() => (
-        <div className={!experimentalOpen ? classes.rootUseMediaQueryWidth : classes.rootFullWidth}>
+       
             <SimConnectDataProvider>
                 <CssBaseline />
-                <Container className={classes.root}>
+                <Container className={!experimentalOpen ? classes.rootUseMediaQueryWidth : classes.rootFullWidth}>
                     <div className={classes.appbar}>
                         <ApplicationBar
                             mapOpenChanged={() => setMapOpen(!mapOpen)}
@@ -82,10 +95,10 @@ const App = () => {
                             experimentalLabel={experimentalItem == undefined ? null : experimentalItem.toUpperCase()}>
                         </ApplicationBar>
                     </div>
-                    {experimentalOpen &&
+                    {experimentalOpen && experimentalItem != undefined &&
                         <div className={classes.aspectRatioPanelContainer}>
-                            <div className={classes.aspectRatioContent}>
-                                <G1000Panel functionDisplay={experimentalItem == undefined ? null : experimentalItem.toUpperCase()}></G1000Panel>
+                            <div className={classes.aspectRatioContentMfd}>
+                                <G1000NXiPanel functionDisplay={experimentalItem.toUpperCase()}></G1000NXiPanel>
                             </div>
                         </div>
                     }
@@ -95,8 +108,7 @@ const App = () => {
                         </div>
                     }
                 </Container>
-            </SimConnectDataProvider >
-        </div>
+            </SimConnectDataProvider>
     ), [classes, configurationData, mapOpen, experimentalOpen, experimentalItem]);
 }
 

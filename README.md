@@ -4,6 +4,17 @@
 
 MSFS Touch Panel is a proof-of-concept web application for MSFS 2020 which focuses on touch inputs to make your flying more enjoyable! It is designed for an iPad and Android tablet with Arduino's input controls in mind to provide a simple DIY cockpit for all the casual sim fans out there. This application can also be used in any modern browser on PC or tablet with all features enabled. The initial release includes features such as:
 
+ - [Experimental Feature #1](ExperimentalFeature.md): Screenshot #1 and #2 below. Similar to Air Manager by Sim Innovations, but a web-based G1000 NXi PFD/MFD transparent .NET WebView2 control frame with fully functional touch enabled switches and dials. Manually pop out these 2 panels from the game or use a [tool](https://github.com/hawkeye-stan/msfs-popout-panel-manager) and place them inside these panels to use the active touch screen controls.
+ - [Experimental Feature #2](ExperimentalFeature.md): Screenshot #3 below. Building on top of experimental feature #1. I reverse engineered MSFS SDK CoherentGTDebugger and used the debugging web socket data messages to reconstruct G1000NXi PFD in web browser. Running this particular version of the panel has no FPS penalty compare to pop out panel. But major caveat is that although most items work, 2 things do not work at all and they are major especially for G1000NXi MFD. The 2 things are MS Bing Map and on screen sub-menu scrolling. Please see the experimental feature documentation for technical detail. This exercise is to prove things can be done although it is not quite perfect. If some can figure out how to extract and stream Bing Map in real time, the entire pop out panel problem may be solved.
+ 
+<div float="left">
+  <img src="screenshots/v0.1/experimental1.png" width="300" hspace="10" />
+  <img src="screenshots/v0.1/experimental2.png" width="300" hspace="10" valign="top"/> 
+  <img src="screenshots/v0.1/experimental5.png" width="300" hspace="10" valign="top"/> 
+</div>
+ 
+## Main Application Feature
+
  - Input control profiles for (Default plane, C152 and C172 G1000 - using G1000 NXi addon)
  - Flight controls including the following:
 	 - Telemetry display
@@ -26,12 +37,11 @@ MSFS Touch Panel is a proof-of-concept web application for MSFS 2020 which focus
 		 - Touch knob input
 		 - Touch stepper input
  - Server side logging for programmers out there who want to see what is going on behind the scene
- - [Experimental Feature](ExperimentalFeature.md): Similar to Air Manager by Sim Innovations, but a web-based G1000 NXi PFD/MFD transparent control frame with fully functional touch enabled switches and dials. Manually pop out these 2 panels from the game or use a [tool](https://github.com/hawkeye-stan/msfs-popout-panel-manager) and place them inside these panels to use the active touch screen controls.
- 
+
 <div float="left">
-  <img src="screenshots/v0.1/experimental1.png" width="350" hspace="10" />
-  <img src="screenshots/v0.1/experimental2.png" width="350" hspace="10" valign="top"/> 
-</div>
+  <img src="screenshots/v0.1/screenshot1.png" width="900" hspace="10" />
+</div> 
+
  
 This project is developed with ReactJS front-end client and an ASP.NET core 5.0 back-end server application. Feature additions and bug fixes will be ongoing as I learn more about the inner workings of MSFS in order to create more advanced feature set, increase support for various airplane profiles, and continue to improve performance of the application.
 

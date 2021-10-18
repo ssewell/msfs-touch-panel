@@ -1,0 +1,55 @@
+.popout-contextmenu-dialog {
+  position: absolute;
+  padding: 5px;
+  /* right: 5px; */
+  /* bottom: 45px; */
+  border-radius: 10px;
+  border: 2px solid whitesmoke;
+  background: rgb(50, 50, 50);
+  font-family: Roboto;
+  font-size: 16px;
+  color: whitesmoke;
+  opacity: 0;
+  z-index: 12;
+}
+
+.popout-contextmenu-dialog .scroll-bar {
+  right: 4px;
+}
+
+.popout-contextmenu-background {
+  position: relative;
+  height: auto;
+  /* max-height: 110px; */
+  background: black;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.popout-contextmenu-container {
+  position: relative;
+  top: 5px;
+  left: 2px;
+  font-size: 18px;
+  padding-right: 12px;
+  margin-bottom: 8px;
+}
+
+.popout-contextmenu-dialog.open {
+  animation: opencontext .2s;
+  opacity: 1;
+}
+
+@keyframes opencontext {
+  from {
+    opacity: 0;
+    transform: scale(0);
+    transform-origin: top left;
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top left;
+  }
+}

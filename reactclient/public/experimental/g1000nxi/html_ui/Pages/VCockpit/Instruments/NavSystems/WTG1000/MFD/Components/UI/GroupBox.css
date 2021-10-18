@@ -1,0 +1,39 @@
+.groupbox-container {
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid rgb(120, 120, 120);
+  background: linear-gradient(to bottom, rgba(152, 159, 174, 0.1) 0px, rgb(0, 0, 0) 10px);
+  padding: 10px 6px 8px 6px;
+  margin: 0px 10px 24px 10px;
+  color: cyan;
+}
+
+.groupbox-content {
+  position: relative;
+  height: 100%;
+}
+
+.groupbox-title {
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  display: inline;
+  color: white;
+  background-color: rgb(50, 50, 50);
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
+
+/* fieldset {
+  border-radius: 10px;
+  border: 1px solid rgb(120, 120, 120);
+  background: linear-gradient(to bottom, rgba(152, 159, 174, 0.1) 0, rgb(0, 0, 0) 10px, rgb(0, 0, 0) 0);
+  margin: 0px 10px 24px 10px;
+  color: cyan;
+}
+
+legend {
+  color: red;
+  background-color: rgb(60, 60, 60);
+  font-size: 14px;
+} */

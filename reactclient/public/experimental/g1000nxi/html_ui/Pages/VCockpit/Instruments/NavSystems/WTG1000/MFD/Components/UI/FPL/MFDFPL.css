@@ -1,0 +1,151 @@
+.mfd-fpln-container {
+  position: relative;
+  margin-top: 30px;
+  width: 355px;
+  height: 150px;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.header-name {
+  width: 100%;
+  padding-bottom: 8px;
+  height: 24px;
+  padding-left: 15px;
+}
+
+.full-length-highlight {
+  width: 100%;
+}
+
+.fix-container>div {
+  padding-bottom: 8px;
+  display: inline-block;
+  height: 26px;
+}
+
+.active-wpt>div {
+  color: magenta;
+}
+
+.active-wpt>div>span {
+  --highlight-color: magenta;
+}
+
+.fix-name {
+  width: 155px;
+  padding-left: 25px;
+  color: cyan;
+}
+
+:not(.active-wpt).fix-container :not(.highlight-select) > .fix-type {
+  color: whitesmoke;
+}
+
+.fix-hidden {
+  display: none;
+  width: 140px;
+  padding-left: 10px;
+  color: cyan;
+}
+
+.mfd-dtk-value {
+  width: 40px;
+  text-align: right;
+  overflow: hidden;
+  color: whitesmoke;
+}
+
+.mfd-dis-value {
+  width: 80px;
+  text-align: right;
+  overflow: hidden;
+  color: whitesmoke;
+}
+
+.mfd-alt-value {
+  width: 80px;
+  text-align: right;
+  overflow: hidden;
+  white-space: pre;
+}
+
+.alt-advisory {
+  color: whitesmoke;
+}
+
+.fix-hold {
+  color: grey;
+}
+
+#origDest {
+  left: 40px;
+  position: relative;
+  padding: 2px;
+  font-size: 20px;
+}
+
+.fpl-directTo {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  left: -35px;
+  top: 0px;
+}
+
+#dtk {
+  position: absolute;
+  left: 170px;
+}
+
+#dis {
+  position: absolute;
+  left: 250px;
+}
+
+#alt {
+  position: absolute;
+  left: 320px;
+}
+
+.dto-arrow {
+  position: absolute;
+  top: 1px;
+  left: 2px;
+}
+
+.dynamic-from-arrow {
+  position: absolute;
+  overflow: visible;
+  top: 9px;
+  left: 2px;
+}
+
+.dynamic-to-arrow {
+  position: absolute;
+  overflow: visible;
+  top: 8px;
+  left: 2px;
+}
+
+.mfd-flightplan-hr {
+  position: absolute;
+  width: 100%;
+  top: 70px;
+  left: 0px;
+  border: 1px solid rgb(152, 159, 174);
+}
+
+.mfd-fpl-weather {
+  height: 50px;
+  color: whitesmoke;
+  font-size: 16px;
+}
+
+.mfd-fpl-bottom-prompt {
+  position: absolute;
+  bottom: 52px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+}

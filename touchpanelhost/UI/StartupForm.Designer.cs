@@ -50,6 +50,8 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.txtServerIP = new DarkUI.Controls.DarkTextBox();
             this.txtClientLogMessages = new DarkUI.Controls.DarkTextBox();
             this.txtServerLogMessages = new DarkUI.Controls.DarkTextBox();
+            this.menuLaunchG1000WebPFD = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLaunchG1000WebMFD = new System.Windows.Forms.ToolStripMenuItem();
             this.darkMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -189,7 +191,9 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menuExperimental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menuExperimental.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuLaunchG1000PFD,
-            this.menuLaunchG1000MFD});
+            this.menuLaunchG1000MFD,
+            this.menuLaunchG1000WebPFD,
+            this.menuLaunchG1000WebMFD});
             this.menuExperimental.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuExperimental.Name = "menuExperimental";
             this.menuExperimental.Size = new System.Drawing.Size(175, 24);
@@ -200,7 +204,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menuLaunchG1000PFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menuLaunchG1000PFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuLaunchG1000PFD.Name = "menuLaunchG1000PFD";
-            this.menuLaunchG1000PFD.Size = new System.Drawing.Size(205, 24);
+            this.menuLaunchG1000PFD.Size = new System.Drawing.Size(239, 24);
             this.menuLaunchG1000PFD.Text = "Launch G1000 PFD";
             // 
             // menuLaunchG1000MFD
@@ -208,7 +212,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menuLaunchG1000MFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menuLaunchG1000MFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuLaunchG1000MFD.Name = "menuLaunchG1000MFD";
-            this.menuLaunchG1000MFD.Size = new System.Drawing.Size(205, 24);
+            this.menuLaunchG1000MFD.Size = new System.Drawing.Size(239, 24);
             this.menuLaunchG1000MFD.Text = "Launch G1000 MFD";
             // 
             // txtServerIP
@@ -248,6 +252,22 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.txtServerLogMessages.ReadOnly = true;
             this.txtServerLogMessages.Size = new System.Drawing.Size(1091, 180);
             this.txtServerLogMessages.TabIndex = 20;
+            // 
+            // menuLaunchG1000WebPFD
+            // 
+            this.menuLaunchG1000WebPFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menuLaunchG1000WebPFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menuLaunchG1000WebPFD.Name = "menuLaunchG1000WebPFD";
+            this.menuLaunchG1000WebPFD.Size = new System.Drawing.Size(239, 24);
+            this.menuLaunchG1000WebPFD.Text = "Launch G1000 Web PFD";
+            // 
+            // menuLaunchG1000WebMFD
+            // 
+            this.menuLaunchG1000WebMFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menuLaunchG1000WebMFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menuLaunchG1000WebMFD.Name = "menuLaunchG1000WebMFD";
+            this.menuLaunchG1000WebMFD.Size = new System.Drawing.Size(239, 24);
+            this.menuLaunchG1000WebMFD.Text = "Launch G1000 Web MFD";
             // 
             // StartupForm
             // 
@@ -301,5 +321,7 @@ namespace MSFSTouchPanel.TouchPanelHost
         private DarkUI.Controls.DarkTextBox txtServerIP;
         private DarkUI.Controls.DarkTextBox txtClientLogMessages;
         private DarkUI.Controls.DarkTextBox txtServerLogMessages;
+        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000WebPFD;
+        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000WebMFD;
     }
 }

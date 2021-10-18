@@ -1,0 +1,82 @@
+.mfd-dto {
+  font-size: 20px;
+}
+
+  .groupbox-container.mfd-dto-map-box {
+    padding: 0;
+  }
+    .mfd-wptinfo-map-box .groupbox-content {
+      overflow: hidden;
+    }
+      .mfd-dto .waypoint-map {
+        position: relative;
+        width: 285px;
+        height: 250px;
+        transform: rotateX(0deg);
+        overflow: hidden;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: 'Roboto-Bold';
+      }
+        .mfd-dto .waypoint-map .map-orientation {
+          position: absolute;
+          left: 2px;
+          top: 10px;
+        }
+        .mfd-dto .waypoint-map .minicompass-layer {
+          position: absolute;
+          left: 2px;
+          top: 30px;
+          font-size: 10px;
+        }
+
+  .mfd-dto-course-box {
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid rgb(120, 120, 120);
+    background: linear-gradient(to bottom, rgba(152, 159, 174, 0.1) 0px, rgb(0, 0, 0) 10px);
+    width: 120px;
+    margin-bottom: 24px;
+    left: 10px;
+    padding: 8px 0px 8px 5px;
+    color: cyan;
+    text-align: center;
+  }
+
+  .mfd-dto-course-box-title {
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    display: inline;
+    color: white;
+    background-color: rgb(50, 50, 50);
+    font-size: 14px;
+  }
+
+  .mfd-dto-vnv-box {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 20px;
+  }
+
+  .mfd-dto-location {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    color: whitesmoke;
+  }
+    .mfd-dto-location-field {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: baseline;
+    }
+      .mfd-dto-location-field-title {
+        width: 35px;
+        color: var(--title-gray);
+        font-size: 0.75em;
+      }
+
+  .mfd-dto-action-buttons {
+    width: 100%;
+  }

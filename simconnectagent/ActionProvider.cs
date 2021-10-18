@@ -77,10 +77,47 @@ namespace MSFSTouchPanel.SimConnectAgent
                 }
             }
         }
+
         public void ArduinoInputHandler(object sender, EventArgs<ArduinoInputData> e)
         {
-            if (_currentSelectedAction != ActionEvent.NO_ACTION)
-                ActionLogicArduino.ExecuteCommand(_simConnector, _fsuipcProvider, _currentSelectedAction, e.Value.InputAction, e.Value.InputName);
+            if(e.Value.InputName == InputName.Keypad)
+            {
+                switch(e.Value.InputAction)
+                {
+                    case InputAction.Key1:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_1, "1");
+                        break;
+                    case InputAction.Key2:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_2, "1");
+                        break;
+                    case InputAction.Key3:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_3, "1");
+                        break;
+                    case InputAction.Key4:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_4, "1");
+                        break;
+                    case InputAction.Key5:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_5, "1");
+                        break;
+                    case InputAction.Key6:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_6, "1");
+                        break;
+                    case InputAction.Key7:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_7, "1");
+                        break;
+                    case InputAction.Key8:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_8, "1");
+                        break;
+                    case InputAction.Key9:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_9, "1");
+                        break;
+                    case InputAction.Key0:
+                        ActionLogicSimConnect.ExecuteSimConnectCommand(_simConnector, ActionEvent.KEY_ATC_MENU_0, "1");
+                        break;
+                }
+            }
+            else if (_currentSelectedAction != ActionEvent.NO_ACTION)
+                ActionLogicArduino.ExecuteCommand(_simConnector, _fsuipcProvider, _currentSelectedAction, e.Value.InputAction, e.Value.InputName, e.Value.Acceleration);
         }
     }
 }

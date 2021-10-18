@@ -99,7 +99,19 @@ namespace MSFSTouchPanel.ArduinoAgent
                         var message = _serialPort.ReadTo("\r\n");
                         var data = message.Split(":");
 
-                        var dataEvent = new ArduinoInputData(data[0], data[1]);
+                        ArduinoInputData dataEvent;
+
+                        // Calculate acceleration
+                        if (data.Length == 3)
+                        {
+                            var accelerationValue = Convert.ToInt32(data[2]);
+                            dataEvent = new ArduinoInputData(data[0], data[1], accelerationValue == 1 ? 1 : accelerationValue / 2);
+                        }
+                        else
+                        {
+                            dataEvent = new ArduinoInputData(data[0], data[1], 1);
+                        }
+                                                
                         dataEvents.Add(dataEvent);
 
                         byteToRead = _serialPort.BytesToRead;

@@ -171,6 +171,9 @@ export const simActions = {
                 CRS: {
                     select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_CRS_SELECT, 1),
                 },
+                HEADING: {
+                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_HEADING_SELECT, 1),
+                },
                 Menu: {
                     directTo: () => simConnectPost(simConnectActionType.G1000NXi.PFD_DIRECTTO, 1),
                     flightPlan: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FLIGHTPLAN, 1),
@@ -188,7 +191,10 @@ export const simActions = {
                     upperPush: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_UPPER_PUSH, 1),
                 },
                 MAP: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_SELECT, 1),
+                    select: () => {
+                        simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_PUSH, 1);
+                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_SELECT, 1), 250);
+                    },
                     rangeInc: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_RANGE_INCREASE, 1),
                     rangeDec: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_RANGE_DECREASE, 1),
                     joystickPush: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_PUSH, 1),
@@ -200,9 +206,20 @@ export const simActions = {
                 SoftKey: {
                     select: (digit) => {
                         simConnectPost(simConnectActionType.G1000NXi['PFD_SOFTKEY_' + digit], 1);
-                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_SELECT, 1), 250);
                     },
                 }
+            },
+            MID: {
+                com1mic: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_MIC_1, 1),
+                com2mic: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_MIC_2, 1),
+                com12swap: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_SWAP, 1),
+                com1: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_1, 1),
+                com2: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_2, 1),
+                adf: () => simConnectPost(simConnectActionType.G1000NXi.MID_ADF, 1),
+                dme: () => simConnectPost(simConnectActionType.G1000NXi.MID_DME, 1),
+                nav1: () => simConnectPost(simConnectActionType.G1000NXi.MID_NAV_1, 1),
+                nav2: () => simConnectPost(simConnectActionType.G1000NXi.MID_NAV_2, 1),
+                aux: () => simConnectPost(simConnectActionType.G1000NXi.MID_AUX, 1),
             },
             MFD: {
                 Volume: {
@@ -219,6 +236,9 @@ export const simActions = {
                 },
                 CRS: {
                     select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_CRS_SELECT, 1),
+                },
+                HEADING: {
+                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_HEADING_SELECT, 1),
                 },
                 Menu: {
                     directTo: () => simConnectPost(simConnectActionType.G1000NXi.MFD_DIRECTTO, 1),
@@ -237,7 +257,10 @@ export const simActions = {
                     upperPush: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_UPPER_PUSH, 1),
                 },
                 MAP: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_SELECT, 1),
+                    select: () => {
+                        simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_PUSH, 1);
+                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_SELECT, 1), 250);
+                    },
                     rangeInc: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_RANGE_INCREASE, 1),
                     rangeDec: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_RANGE_DECREASE, 1),
                     joystickPush: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_PUSH, 1),
@@ -249,15 +272,8 @@ export const simActions = {
                 SoftKey: {
                     select: (digit) => {
                         simConnectPost(simConnectActionType.G1000NXi['MFD_SOFTKEY_' + digit], 1);
-                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_SELECT, 1), 250);
                     },
                 }
-            },
-            MID: {
-                adf: () => simConnectPost(simConnectActionType.G1000NXi.ADF_SELECT, 1),
-                dme: () => simConnectPost(simConnectActionType.G1000NXi.DME_SELECT, 1),
-                dmeNav1: () => simConnectPost(simConnectActionType.G1000NXi.DME_NAV1_SELECT, 1),
-                dmeNav2: () => simConnectPost(simConnectActionType.G1000NXi.DME_NAV2_SELECT, 1)
             }
         }
     }

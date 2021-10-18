@@ -42,7 +42,6 @@ namespace MSFSTouchPanel.TouchPanelHost.UI
             this.webView.Location = new System.Drawing.Point(0, 0);
             this.webView.Name = "webView";
             this.webView.Size = new System.Drawing.Size(1199, 841);
-            this.webView.Source = new System.Uri("http://localhost:5000/pfd", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             this.webView.UseWaitCursor = true;
             this.webView.ZoomFactor = 1D;

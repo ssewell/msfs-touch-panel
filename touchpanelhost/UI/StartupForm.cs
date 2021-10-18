@@ -17,6 +17,8 @@ namespace MSFSTouchPanel.TouchPanelHost
         private G1000PFDForm _pfdForm;
         private G1000MFDForm _mfdForm;
 
+        private G1000NXiForm _g1000NxiForm;
+
         public StartupForm()
         {
             InitializeComponent();
@@ -43,6 +45,8 @@ namespace MSFSTouchPanel.TouchPanelHost
             menuClearServerLog.Click += menuItem_Clicked;
             menuLaunchG1000PFD.Click += menuItem_Clicked;
             menuLaunchG1000MFD.Click += menuItem_Clicked;
+            menuLaunchG1000WebPFD.Click += menuItem_Clicked;
+            menuLaunchG1000WebMFD.Click += menuItem_Clicked;
         }
 
         public string HostIP
@@ -140,14 +144,24 @@ namespace MSFSTouchPanel.TouchPanelHost
                     txtClientLogMessages.Clear();
                     break;
                 case "menuLaunchG1000PFD":
-                    if(_pfdForm == null || _pfdForm.IsDisposed)
-                        _pfdForm = new G1000PFDForm();
-                    _pfdForm.Show();
+                    if(_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
+                        _g1000NxiForm = new G1000NXiForm("PFD");
+                    _g1000NxiForm.Show();
                     break;
                 case "menuLaunchG1000MFD":
-                    if (_mfdForm == null || _mfdForm.IsDisposed)
-                        _mfdForm = new G1000MFDForm();
-                    _mfdForm.Show();
+                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
+                        _g1000NxiForm = new G1000NXiForm("MFD");
+                    _g1000NxiForm.Show();
+                    break;
+                case "menuLaunchG1000WebPFD":
+                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
+                        _g1000NxiForm = new G1000NXiForm("PFDWEB");
+                    _g1000NxiForm.Show();
+                    break;
+                case "menuLaunchG1000WebMFD":
+                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
+                        _g1000NxiForm = new G1000NXiForm("MFDWEB");
+                    _g1000NxiForm.Show();
                     break;
             }
         }

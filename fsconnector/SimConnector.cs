@@ -112,15 +112,17 @@ namespace MSFSTouchPanel.FSConnector
         }
 
 
-        public void TransmitActionEvent(Enum eventID, uint data)
+        public void TransmitActionEvent(Enum eventID, uint data, int acceleration)
         {
             if (_simConnect != null)
             {
                 try 
                 {
-                    if(_simConnect != null)
+                    for (var i = 0; i < acceleration; i++)
+                    {
                         _simConnect.TransmitClientEvent(0U, eventID, data, NotificationGroup.GROUP0, SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
-                    Thread.Sleep(20);   // small delay to ease bombarding SimConnect
+                        Thread.Sleep(25);   // small delay to ease bombarding SimConnect
+                    }
                 }
                 catch(Exception ex)
                 {

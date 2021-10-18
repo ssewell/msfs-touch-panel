@@ -166,7 +166,19 @@ export const simConnectActionType = {
         PFD_COM_SELECT: { type: 'Custom', simAction: 'PFD_COM_KNOB_PUSH' },
         PFD_COM_SWAP: { type: 'HVar', simAction: 'AS1000_PFD_COM_Switch' },
         PFD_CRS_SELECT: { type: 'Custom', simAction: 'PFD_CRS_KNOB_PUSH' },
+        PFD_HEADING_SELECT: { type: 'Custom', simAction: 'PFD_HEADING_KNOB_PUSH' },
     
+        MID_COM_MIC_1 : { type: 'HVar', simAction: 'AS1000_MID_COM_Mic_1_Push' },
+        MID_COM_MIC_2 : { type: 'HVar', simAction: 'AS1000_MID_COM_Mic_2_Push' },
+        MID_COM_1 : { type: 'HVar', simAction: 'AS1000_MID_COM_1_Push' },
+        MID_COM_2 : { type: 'HVar', simAction: 'AS1000_MID_COM_1_Push' },
+        MID_COM_SWAP : { type: 'HVar', simAction: 'AS1000_MID_COM_Swap_1_2_Push' },
+        MID_DME: { type: 'HVar', simAction: 'AS1000_MID_DME_Push' },
+        MID_ADF : { type: 'HVar', simAction: 'AS1000_MID_ADF_Push' },
+        MID_NAV_1 : { type: 'HVar', simAction: 'AS1000_MID_NAV_1_Push' },
+        MID_NAV_2 : { type: 'HVar', simAction: 'AS1000_MID_NAV_2_Push' },
+        MID_AUX: { type: 'HVar', simAction: 'AS1000_MID_AUX_Push' },
+
         MFD_MENU: { type: 'HVar', simAction: 'AS1000_MFD_MENU_Push' },
         MFD_DIRECTTO: { type: 'HVar', simAction: 'AS1000_MFD_DIRECTTO' },
         MFD_FLIGHTPLAN: { type: 'HVar', simAction: 'AS1000_MFD_FPL_Push' },
@@ -209,5 +221,6 @@ export const simConnectActionType = {
         MFD_COM_SELECT: { type: 'Custom', simAction: 'MFD_COM_KNOB_PUSH' },
         MFD_COM_SWAP: { type: 'HVar', simAction: 'AS1000_PFD_COM_Switch' },
         MFD_CRS_SELECT: { type: 'Custom', simAction: 'MFD_CRS_KNOB_PUSH' },
+        MFD_HEADING_SELECT: { type: 'Custom', simAction: 'MFD_HEADING_KNOB_PUSH' },
     }
 }

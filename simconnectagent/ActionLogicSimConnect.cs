@@ -68,7 +68,7 @@ namespace MSFSTouchPanel.SimConnectAgent
                     break;
             }
             
-            simConnector.TransmitActionEvent(actionEvent, commandData);
+            simConnector.TransmitActionEvent(actionEvent, commandData, 1);
 
             return currentSelectedAction;
         }

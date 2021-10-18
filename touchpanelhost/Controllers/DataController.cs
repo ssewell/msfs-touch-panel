@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using MSFSTouchPanel.FSConnector;
 using MSFSTouchPanel.Shared;
 using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace MSFSTouchPanel.TouchPanelHost.Controllers
 {
@@ -18,6 +20,23 @@ namespace MSFSTouchPanel.TouchPanelHost.Controllers
         {
             _simConnectService = simConnectService;
             _memoryCache = memoryCache;
+        }
+
+        [HttpGet("/getdebuggerpagelist")]
+        public string GetDebuggerPageList()
+        {
+            
+            return GetCoherentDebuggerPageList().Result;
+        }
+
+        private async Task<string> GetCoherentDebuggerPageList()
+        {
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://127.0.0.1:19999/pagelist.json");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            return responseBody;
         }
 
         [HttpGet("/getdata")]

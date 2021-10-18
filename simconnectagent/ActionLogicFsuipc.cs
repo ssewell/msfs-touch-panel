@@ -17,7 +17,7 @@ namespace MSFSTouchPanel.SimConnectAgent
                 for (int i = 0; i < executionCount; i++)
                 {
                     fsuipcProvider.ExecuteCalculatorCodeHVar(simConnectEventId.ToString());
-                    Thread.Sleep(100);
+                    Thread.Sleep(25);
                 }
             }
         }
