@@ -37,13 +37,11 @@ The concept of this experimental feature is to be able to code a responsive web 
 	http://localhost:5000/pfd 
 
 	http://localhost:5000/mfd 
-	
 
-Option
 
 # Experimental Feature #2 - Pure Web-based G1000 NXi PFD/MFD
 
-### IMPORTANT! This experimental feature only works with Arduino input currently. You can still run the panel as display only without the button control.
+### IMPORTANT! This experimental feature only works with Arduino input currently. You can still run the panel as display only without the button controls.
 
 <img src="screenshots/v0.1/experimental5.png" width="600" hspace="10" valign="top"/> 
 
@@ -54,12 +52,13 @@ Option
 
 2. Start the game and go into a flight. When the flight is fully loaded, go to next step.
 
-2. Directly access PFD/MFD web page. You can type in following the URL in the browser:
+3. Directly access PFD/MFD web page. You can type in following the URL in the browser:
 
 	http://localhost:5000/pfdweb
 
 	http://localhost:5000/mfdweb
-	
+
+If the screen doesn't come up, keep reloading the page or see inspector in browser's development panel to see are there any javascript error.	
 Optional: Run as display only
 
 	http://localhost:5000/experimental/g1000nxi/g1000nxi_pfd.html
@@ -80,16 +79,16 @@ ws://localhost:19999/devtools/page/XXX
 
 XXX will be different every time a flight is started.
 
-The websocket message returns the generated HTML page as DOM nodes on demand. By parsing all different types of incoming websocket messages, my app was able to reconstruct the entire DOM tree in real time and render it inside a web browser. Each websocket message has a piece of information with attributes and node relationship for reconstruction. Unfortunately, the reconstruction is not straight forward with lots of tricky node determination and parsing as well as one-offs on Asobo's side as well as G1000 NXi side. Incorrect reconstruction and parsing will usually kill the browser with CPU usage spike and memory leak. 
+The websocket message returns generated HTML page as DOM nodes on demand. By parsing different types of incoming websocket messages, my app was able to reconstruct the entire DOM tree in real time and render it inside a web browser. Each websocket message has a piece of information with attributes and node relationship for reconstruction. Unfortunately, the reconstruction is not straight forward with lots of tricky determination of node content and node parsing as well as one-offs on Asobo's side as well as G1000 NXi side. Incorrect reconstruction and parsing will usually kill the browser with CPU usage spike and memory leak. 
 
 Two things I'm not able to get information currently:
 
 1. By accessing a pop up sub menu inside a panel, if the sub menu is scroll-able, the scrollbar is implemented as SVG instead of HTML overflow. So even the scrollbar is moving, the overflow is not moving which is most likely control by Javascript running on Coherent side. 
 
-2. Bing Map - images with JS_BING_XXXXXXXXX are not available since they're not PNG or other image type. Most likely they're stream images in the Coherent server side. The debugger web socket is not able to return this screenshot. I tried to injrect javascript to MSFS vcockpit scripts to convert the stream to base64 using various method (Canvas, blob, etc) but failed.
+2. Bing Map (major) - images with JS_BING_XXXXXXXXX are not available since they're not PNG or other image type. Most likely they're stream images on the Coherent server side. The debugger web socket is not able to return this screenshot. I tried to injrect javascript to MSFS vcockpit scripts to convert the stream to base64 using various method (Canvas, blob, etc) but failed.
 
-Anyway, it is fun to do this feature even though it is not perfect. But be able to run entire G1000Nxi PFD with minimal code change other than dumping the html_ui folder into the web app is a win!
+Anyway, it is fun to do this feature even though it is not perfect. But being able to run an entire G1000Nxi PFD with minimal code change other than dumping the html_ui folder into the web app is a win!
 
-Next tacket is Flybywire A320 because the pop out panel seems to have few MS  Bing images.
+Next thing to tackle is Flybywire A320 because the pop out panel seems to have fewer MS Bing images.
 
 Code for this experiment feature, mostly in module.js file is available [here](reactclient/public/experimental/g1000nxi/)
