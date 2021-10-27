@@ -10,7 +10,7 @@ MSFS Touch Panel is a proof-of-concept web application for MSFS 2020 which focus
 <div float="left">
   <img src="screenshots/v0.1/experimental1.png" width="300" hspace="10" />
   <img src="screenshots/v0.1/experimental2.png" width="300" hspace="10" valign="top"/> 
-  <img src="screenshots/v0.1/experimental5.png" width="300" hspace="10" valign="top"/> 
+  <img src="screenshots/v0.1/experimental5.png" width="300" hspace="10" valign="top" vspace="10" /> 
 </div>
  
 ## Main Application Feature
@@ -39,7 +39,7 @@ MSFS Touch Panel is a proof-of-concept web application for MSFS 2020 which focus
  - Server side logging for programmers out there who want to see what is going on behind the scene
 
 <div float="left">
-  <img src="screenshots/v0.1/screenshot1.png" width="900" hspace="10" />
+  <img src="screenshots/v0.1/screenshot1.png" width="900" hspace="10" vspace="10" />
 </div> 
 
  

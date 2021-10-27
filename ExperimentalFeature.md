@@ -14,7 +14,7 @@ The concept of this experimental feature is to be able to code a responsive web 
 
  
 ## How to Use
-1. Launch PFD and/or MFD panel from the server application.  
+1. Launch PFD and/or MFD panel from the server application. (MSFS Touch Panel Server.exe) 
 
 <img src="screenshots/v0.1/experimental4.png" width="900" hspace="10" valign="top"/> 
 
@@ -48,7 +48,7 @@ The concept of this experimental feature is to be able to code a responsive web 
 
 ## How to Use
 
-1. Launch PFD and/or MFD panel from the server application.  
+1. Launch the server application. (MSFS Touch Panel Server.exe)   
 
 2. Start the game and go into a flight. When the flight is fully loaded, go to next step.
 
