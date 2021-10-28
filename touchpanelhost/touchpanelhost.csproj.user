@@ -8,12 +8,6 @@
     <NameOfLastUsedPublishProfile>C:\Src\msfs-touch-panel\touchpanelhost\Properties\PublishProfiles\FolderProfile.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="UI\G1000MFDForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="UI\G1000PFDForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="UI\StartupForm.cs">
       <SubType>Form</SubType>
     </Compile>

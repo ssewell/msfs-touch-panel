@@ -10,7 +10,7 @@ export const simConnectPost = (action, value, executionCount = 1) => {
 
     console.log(data);
 
-    fetch('postdata', {
+    fetch('/postdata', {
          method: "POST",
          headers: { "Content-type": "application/json; charset=UTF-8" },
          body: JSON.stringify(data)

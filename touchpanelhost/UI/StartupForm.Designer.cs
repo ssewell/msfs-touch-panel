@@ -45,13 +45,55 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menuClearClientActionLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuClearServerLog = new System.Windows.Forms.ToolStripMenuItem();
             this.menuExperimental = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLaunchG1000PFD = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLaunchG1000MFD = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonsPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.g1000NXiToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_buttonpanel_g1000nxi_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_buttonpanel_g1000nxi_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonFrameOnlyPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.g1000NXiToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_buttonpanelframeonly_g1000nxi_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_buttonpanelframeonly_g1000nxi_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.webPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.g1000NXiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_g1000nxi_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_g1000nxi_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.asoboCJ4ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_cj4_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_cj4_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_cj4_fmc = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_cj4_sai = new System.Windows.Forms.ToolStripMenuItem();
+            this.flyByWireA32NXToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.winPanelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.g1000NXiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_g1000nxi_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_g1000nxi_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.asoboCJ4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_cj4_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_cj4_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_cj4_fmc = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_cj4_sai = new System.Windows.Forms.ToolStripMenuItem();
+            this.flyByWireA32NXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_eicas_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_eicas_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_cdu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_dcdu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_isis = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_fcu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_winpanel_fbwa32nx_rmp = new System.Windows.Forms.ToolStripMenuItem();
             this.txtServerIP = new DarkUI.Controls.DarkTextBox();
             this.txtClientLogMessages = new DarkUI.Controls.DarkTextBox();
             this.txtServerLogMessages = new DarkUI.Controls.DarkTextBox();
-            this.menuLaunchG1000WebPFD = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLaunchG1000WebMFD = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_pfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_mfd = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_eicas_1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_eicas_2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_cdu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_dcdu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_isis = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_fcu = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_webpanel_fbwa32nx_rmp = new System.Windows.Forms.ToolStripMenuItem();
             this.darkMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,30 +232,364 @@ namespace MSFSTouchPanel.TouchPanelHost
             // 
             this.menuExperimental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menuExperimental.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuLaunchG1000PFD,
-            this.menuLaunchG1000MFD,
-            this.menuLaunchG1000WebPFD,
-            this.menuLaunchG1000WebMFD});
+            this.buttonsPanelToolStripMenuItem,
+            this.buttonFrameOnlyPanelToolStripMenuItem,
+            this.webPanelToolStripMenuItem,
+            this.winPanelToolStripMenuItem});
             this.menuExperimental.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menuExperimental.Name = "menuExperimental";
             this.menuExperimental.Size = new System.Drawing.Size(175, 24);
             this.menuExperimental.Text = "Exeperimental Features";
             // 
-            // menuLaunchG1000PFD
+            // buttonsPanelToolStripMenuItem
             // 
-            this.menuLaunchG1000PFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.menuLaunchG1000PFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.menuLaunchG1000PFD.Name = "menuLaunchG1000PFD";
-            this.menuLaunchG1000PFD.Size = new System.Drawing.Size(239, 24);
-            this.menuLaunchG1000PFD.Text = "Launch G1000 PFD";
+            this.buttonsPanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.buttonsPanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.g1000NXiToolStripMenuItem2});
+            this.buttonsPanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.buttonsPanelToolStripMenuItem.Name = "buttonsPanelToolStripMenuItem";
+            this.buttonsPanelToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.buttonsPanelToolStripMenuItem.Text = "Button Panel";
             // 
-            // menuLaunchG1000MFD
+            // g1000NXiToolStripMenuItem2
             // 
-            this.menuLaunchG1000MFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.menuLaunchG1000MFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.menuLaunchG1000MFD.Name = "menuLaunchG1000MFD";
-            this.menuLaunchG1000MFD.Size = new System.Drawing.Size(239, 24);
-            this.menuLaunchG1000MFD.Text = "Launch G1000 MFD";
+            this.g1000NXiToolStripMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.g1000NXiToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_buttonpanel_g1000nxi_pfd,
+            this.menu_buttonpanel_g1000nxi_mfd});
+            this.g1000NXiToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.g1000NXiToolStripMenuItem2.Name = "g1000NXiToolStripMenuItem2";
+            this.g1000NXiToolStripMenuItem2.Size = new System.Drawing.Size(144, 24);
+            this.g1000NXiToolStripMenuItem2.Text = "G1000NXi";
+            // 
+            // menu_buttonpanel_g1000nxi_pfd
+            // 
+            this.menu_buttonpanel_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_buttonpanel_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_buttonpanel_g1000nxi_pfd.Name = "menu_buttonpanel_g1000nxi_pfd";
+            this.menu_buttonpanel_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanel_g1000nxi_pfd.Text = "PFD";
+            // 
+            // menu_buttonpanel_g1000nxi_mfd
+            // 
+            this.menu_buttonpanel_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_buttonpanel_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_buttonpanel_g1000nxi_mfd.Name = "menu_buttonpanel_g1000nxi_mfd";
+            this.menu_buttonpanel_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanel_g1000nxi_mfd.Text = "MFD";
+            // 
+            // buttonFrameOnlyPanelToolStripMenuItem
+            // 
+            this.buttonFrameOnlyPanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.buttonFrameOnlyPanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.g1000NXiToolStripMenuItem3});
+            this.buttonFrameOnlyPanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.buttonFrameOnlyPanelToolStripMenuItem.Name = "buttonFrameOnlyPanelToolStripMenuItem";
+            this.buttonFrameOnlyPanelToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.buttonFrameOnlyPanelToolStripMenuItem.Text = "Button Panel Frame Only";
+            // 
+            // g1000NXiToolStripMenuItem3
+            // 
+            this.g1000NXiToolStripMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.g1000NXiToolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_buttonpanelframeonly_g1000nxi_pfd,
+            this.menu_buttonpanelframeonly_g1000nxi_mfd});
+            this.g1000NXiToolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.g1000NXiToolStripMenuItem3.Name = "g1000NXiToolStripMenuItem3";
+            this.g1000NXiToolStripMenuItem3.Size = new System.Drawing.Size(144, 24);
+            this.g1000NXiToolStripMenuItem3.Text = "G1000NXi";
+            // 
+            // menu_buttonpanelframeonly_g1000nxi_pfd
+            // 
+            this.menu_buttonpanelframeonly_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_buttonpanelframeonly_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_buttonpanelframeonly_g1000nxi_pfd.Name = "menu_buttonpanelframeonly_g1000nxi_pfd";
+            this.menu_buttonpanelframeonly_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanelframeonly_g1000nxi_pfd.Text = "PFD";
+            // 
+            // menu_buttonpanelframeonly_g1000nxi_mfd
+            // 
+            this.menu_buttonpanelframeonly_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_buttonpanelframeonly_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_buttonpanelframeonly_g1000nxi_mfd.Name = "menu_buttonpanelframeonly_g1000nxi_mfd";
+            this.menu_buttonpanelframeonly_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanelframeonly_g1000nxi_mfd.Text = "MFD";
+            // 
+            // webPanelToolStripMenuItem
+            // 
+            this.webPanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.webPanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.g1000NXiToolStripMenuItem1,
+            this.asoboCJ4ToolStripMenuItem1,
+            this.flyByWireA32NXToolStripMenuItem1});
+            this.webPanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.webPanelToolStripMenuItem.Name = "webPanelToolStripMenuItem";
+            this.webPanelToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.webPanelToolStripMenuItem.Text = "Web Panel";
+            // 
+            // g1000NXiToolStripMenuItem1
+            // 
+            this.g1000NXiToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.g1000NXiToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_webpanel_g1000nxi_pfd,
+            this.menu_webpanel_g1000nxi_mfd});
+            this.g1000NXiToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.g1000NXiToolStripMenuItem1.Name = "g1000NXiToolStripMenuItem1";
+            this.g1000NXiToolStripMenuItem1.Size = new System.Drawing.Size(193, 24);
+            this.g1000NXiToolStripMenuItem1.Text = "G1000NXi";
+            // 
+            // menu_webpanel_g1000nxi_pfd
+            // 
+            this.menu_webpanel_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_g1000nxi_pfd.Name = "menu_webpanel_g1000nxi_pfd";
+            this.menu_webpanel_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_g1000nxi_pfd.Text = "PFD";
+            // 
+            // menu_webpanel_g1000nxi_mfd
+            // 
+            this.menu_webpanel_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_g1000nxi_mfd.Name = "menu_webpanel_g1000nxi_mfd";
+            this.menu_webpanel_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_g1000nxi_mfd.Text = "MFD";
+            // 
+            // asoboCJ4ToolStripMenuItem1
+            // 
+            this.asoboCJ4ToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.asoboCJ4ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_webpanel_cj4_pfd,
+            this.menu_webpanel_cj4_mfd,
+            this.menu_webpanel_cj4_fmc,
+            this.menu_webpanel_cj4_sai});
+            this.asoboCJ4ToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.asoboCJ4ToolStripMenuItem1.Name = "asoboCJ4ToolStripMenuItem1";
+            this.asoboCJ4ToolStripMenuItem1.Size = new System.Drawing.Size(193, 24);
+            this.asoboCJ4ToolStripMenuItem1.Text = "Asobo CJ4";
+            // 
+            // menu_webpanel_cj4_pfd
+            // 
+            this.menu_webpanel_cj4_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_cj4_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_cj4_pfd.Name = "menu_webpanel_cj4_pfd";
+            this.menu_webpanel_cj4_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_cj4_pfd.Text = "PFD";
+            // 
+            // menu_webpanel_cj4_mfd
+            // 
+            this.menu_webpanel_cj4_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_cj4_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_cj4_mfd.Name = "menu_webpanel_cj4_mfd";
+            this.menu_webpanel_cj4_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_cj4_mfd.Text = "MFD";
+            // 
+            // menu_webpanel_cj4_fmc
+            // 
+            this.menu_webpanel_cj4_fmc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_cj4_fmc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_cj4_fmc.Name = "menu_webpanel_cj4_fmc";
+            this.menu_webpanel_cj4_fmc.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_cj4_fmc.Text = "FMC";
+            // 
+            // menu_webpanel_cj4_sai
+            // 
+            this.menu_webpanel_cj4_sai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_cj4_sai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_cj4_sai.Name = "menu_webpanel_cj4_sai";
+            this.menu_webpanel_cj4_sai.Size = new System.Drawing.Size(109, 24);
+            this.menu_webpanel_cj4_sai.Text = "SAI";
+            // 
+            // flyByWireA32NXToolStripMenuItem1
+            // 
+            this.flyByWireA32NXToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.flyByWireA32NXToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_webpanel_fbwa32nx_pfd,
+            this.menu_webpanel_fbwa32nx_mfd,
+            this.menu_webpanel_fbwa32nx_eicas_1,
+            this.menu_webpanel_fbwa32nx_eicas_2,
+            this.menu_webpanel_fbwa32nx_cdu,
+            this.menu_webpanel_fbwa32nx_dcdu,
+            this.menu_webpanel_fbwa32nx_isis,
+            this.menu_webpanel_fbwa32nx_fcu,
+            this.menu_webpanel_fbwa32nx_rmp});
+            this.flyByWireA32NXToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.flyByWireA32NXToolStripMenuItem1.Name = "flyByWireA32NXToolStripMenuItem1";
+            this.flyByWireA32NXToolStripMenuItem1.Size = new System.Drawing.Size(193, 24);
+            this.flyByWireA32NXToolStripMenuItem1.Text = "FlyByWire A32NX";
+            // 
+            // winPanelToolStripMenuItem
+            // 
+            this.winPanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.winPanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.g1000NXiToolStripMenuItem,
+            this.asoboCJ4ToolStripMenuItem,
+            this.flyByWireA32NXToolStripMenuItem});
+            this.winPanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.winPanelToolStripMenuItem.Name = "winPanelToolStripMenuItem";
+            this.winPanelToolStripMenuItem.Size = new System.Drawing.Size(240, 24);
+            this.winPanelToolStripMenuItem.Text = "Windows Panel";
+            // 
+            // g1000NXiToolStripMenuItem
+            // 
+            this.g1000NXiToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.g1000NXiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_winpanel_g1000nxi_pfd,
+            this.menu_winpanel_g1000nxi_mfd});
+            this.g1000NXiToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.g1000NXiToolStripMenuItem.Name = "g1000NXiToolStripMenuItem";
+            this.g1000NXiToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.g1000NXiToolStripMenuItem.Text = "G1000NXi";
+            // 
+            // menu_winpanel_g1000nxi_pfd
+            // 
+            this.menu_winpanel_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_g1000nxi_pfd.Name = "menu_winpanel_g1000nxi_pfd";
+            this.menu_winpanel_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_g1000nxi_pfd.Text = "PFD";
+            // 
+            // menu_winpanel_g1000nxi_mfd
+            // 
+            this.menu_winpanel_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_g1000nxi_mfd.Name = "menu_winpanel_g1000nxi_mfd";
+            this.menu_winpanel_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_g1000nxi_mfd.Text = "MFD";
+            // 
+            // asoboCJ4ToolStripMenuItem
+            // 
+            this.asoboCJ4ToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.asoboCJ4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_winpanel_cj4_pfd,
+            this.menu_winpanel_cj4_mfd,
+            this.menu_winpanel_cj4_fmc,
+            this.menu_winpanel_cj4_sai});
+            this.asoboCJ4ToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.asoboCJ4ToolStripMenuItem.Name = "asoboCJ4ToolStripMenuItem";
+            this.asoboCJ4ToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.asoboCJ4ToolStripMenuItem.Text = "Asobo CJ4";
+            // 
+            // menu_winpanel_cj4_pfd
+            // 
+            this.menu_winpanel_cj4_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_cj4_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_cj4_pfd.Name = "menu_winpanel_cj4_pfd";
+            this.menu_winpanel_cj4_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_cj4_pfd.Text = "PFD";
+            // 
+            // menu_winpanel_cj4_mfd
+            // 
+            this.menu_winpanel_cj4_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_cj4_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_cj4_mfd.Name = "menu_winpanel_cj4_mfd";
+            this.menu_winpanel_cj4_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_cj4_mfd.Text = "MFD";
+            // 
+            // menu_winpanel_cj4_fmc
+            // 
+            this.menu_winpanel_cj4_fmc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_cj4_fmc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_cj4_fmc.Name = "menu_winpanel_cj4_fmc";
+            this.menu_winpanel_cj4_fmc.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_cj4_fmc.Text = "FMC";
+            // 
+            // menu_winpanel_cj4_sai
+            // 
+            this.menu_winpanel_cj4_sai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_cj4_sai.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_cj4_sai.Name = "menu_winpanel_cj4_sai";
+            this.menu_winpanel_cj4_sai.Size = new System.Drawing.Size(109, 24);
+            this.menu_winpanel_cj4_sai.Text = "SAI";
+            // 
+            // flyByWireA32NXToolStripMenuItem
+            // 
+            this.flyByWireA32NXToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.flyByWireA32NXToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_winpanel_fbwa32nx_pfd,
+            this.menu_winpanel_fbwa32nx_mfd,
+            this.menu_winpanel_fbwa32nx_eicas_1,
+            this.menu_winpanel_fbwa32nx_eicas_2,
+            this.menu_winpanel_fbwa32nx_cdu,
+            this.menu_winpanel_fbwa32nx_dcdu,
+            this.menu_winpanel_fbwa32nx_isis,
+            this.menu_winpanel_fbwa32nx_fcu,
+            this.menu_winpanel_fbwa32nx_rmp});
+            this.flyByWireA32NXToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.flyByWireA32NXToolStripMenuItem.Name = "flyByWireA32NXToolStripMenuItem";
+            this.flyByWireA32NXToolStripMenuItem.Size = new System.Drawing.Size(193, 24);
+            this.flyByWireA32NXToolStripMenuItem.Text = "FlyByWire A32NX";
+            // 
+            // menu_winpanel_fbwa32nx_pfd
+            // 
+            this.menu_winpanel_fbwa32nx_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_pfd.Name = "menu_winpanel_fbwa32nx_pfd";
+            this.menu_winpanel_fbwa32nx_pfd.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_pfd.Text = "PFD";
+            // 
+            // menu_winpanel_fbwa32nx_mfd
+            // 
+            this.menu_winpanel_fbwa32nx_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_mfd.Name = "menu_winpanel_fbwa32nx_mfd";
+            this.menu_winpanel_fbwa32nx_mfd.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_mfd.Text = "MFD";
+            // 
+            // menu_winpanel_fbwa32nx_eicas_1
+            // 
+            this.menu_winpanel_fbwa32nx_eicas_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_eicas_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_eicas_1.Name = "menu_winpanel_fbwa32nx_eicas_1";
+            this.menu_winpanel_fbwa32nx_eicas_1.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_eicas_1.Text = "EICAS_1";
+            // 
+            // menu_winpanel_fbwa32nx_eicas_2
+            // 
+            this.menu_winpanel_fbwa32nx_eicas_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_eicas_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_eicas_2.Name = "menu_winpanel_fbwa32nx_eicas_2";
+            this.menu_winpanel_fbwa32nx_eicas_2.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_eicas_2.Text = "EICAS_2";
+            // 
+            // menu_winpanel_fbwa32nx_cdu
+            // 
+            this.menu_winpanel_fbwa32nx_cdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_cdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_cdu.Name = "menu_winpanel_fbwa32nx_cdu";
+            this.menu_winpanel_fbwa32nx_cdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_cdu.Text = "MCDU";
+            // 
+            // menu_winpanel_fbwa32nx_dcdu
+            // 
+            this.menu_winpanel_fbwa32nx_dcdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_dcdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_dcdu.Name = "menu_winpanel_fbwa32nx_dcdu";
+            this.menu_winpanel_fbwa32nx_dcdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_dcdu.Text = "DCDU";
+            // 
+            // menu_winpanel_fbwa32nx_isis
+            // 
+            this.menu_winpanel_fbwa32nx_isis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_isis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_isis.Name = "menu_winpanel_fbwa32nx_isis";
+            this.menu_winpanel_fbwa32nx_isis.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_isis.Text = "ISIS";
+            // 
+            // menu_winpanel_fbwa32nx_fcu
+            // 
+            this.menu_winpanel_fbwa32nx_fcu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_fcu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_fcu.Name = "menu_winpanel_fbwa32nx_fcu";
+            this.menu_winpanel_fbwa32nx_fcu.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_fcu.Text = "FCU";
+            // 
+            // menu_winpanel_fbwa32nx_rmp
+            // 
+            this.menu_winpanel_fbwa32nx_rmp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_winpanel_fbwa32nx_rmp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_winpanel_fbwa32nx_rmp.Name = "menu_winpanel_fbwa32nx_rmp";
+            this.menu_winpanel_fbwa32nx_rmp.Size = new System.Drawing.Size(180, 24);
+            this.menu_winpanel_fbwa32nx_rmp.Text = "RMP";
             // 
             // txtServerIP
             // 
@@ -253,21 +629,77 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.txtServerLogMessages.Size = new System.Drawing.Size(1091, 180);
             this.txtServerLogMessages.TabIndex = 20;
             // 
-            // menuLaunchG1000WebPFD
+            // menu_webpanel_fbwa32nx_pfd
             // 
-            this.menuLaunchG1000WebPFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.menuLaunchG1000WebPFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.menuLaunchG1000WebPFD.Name = "menuLaunchG1000WebPFD";
-            this.menuLaunchG1000WebPFD.Size = new System.Drawing.Size(239, 24);
-            this.menuLaunchG1000WebPFD.Text = "Launch G1000 Web PFD";
+            this.menu_webpanel_fbwa32nx_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_pfd.Name = "menu_webpanel_fbwa32nx_pfd";
+            this.menu_webpanel_fbwa32nx_pfd.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_pfd.Text = "PFD";
             // 
-            // menuLaunchG1000WebMFD
+            // menu_webpanel_fbwa32nx_mfd
             // 
-            this.menuLaunchG1000WebMFD.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
-            this.menuLaunchG1000WebMFD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.menuLaunchG1000WebMFD.Name = "menuLaunchG1000WebMFD";
-            this.menuLaunchG1000WebMFD.Size = new System.Drawing.Size(239, 24);
-            this.menuLaunchG1000WebMFD.Text = "Launch G1000 Web MFD";
+            this.menu_webpanel_fbwa32nx_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_mfd.Name = "menu_webpanel_fbwa32nx_mfd";
+            this.menu_webpanel_fbwa32nx_mfd.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_mfd.Text = "MFD";
+            // 
+            // menu_webpanel_fbwa32nx_eicas_1
+            // 
+            this.menu_webpanel_fbwa32nx_eicas_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_eicas_1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_eicas_1.Name = "menu_webpanel_fbwa32nx_eicas_1";
+            this.menu_webpanel_fbwa32nx_eicas_1.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_eicas_1.Text = "EICAS_1";
+            // 
+            // menu_webpanel_fbwa32nx_eicas_2
+            // 
+            this.menu_webpanel_fbwa32nx_eicas_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_eicas_2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_eicas_2.Name = "menu_webpanel_fbwa32nx_eicas_2";
+            this.menu_webpanel_fbwa32nx_eicas_2.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_eicas_2.Text = "EICAS_2";
+            // 
+            // menu_webpanel_fbwa32nx_cdu
+            // 
+            this.menu_webpanel_fbwa32nx_cdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_cdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_cdu.Name = "menu_webpanel_fbwa32nx_cdu";
+            this.menu_webpanel_fbwa32nx_cdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_cdu.Text = "MCDU";
+            // 
+            // menu_webpanel_fbwa32nx_dcdu
+            // 
+            this.menu_webpanel_fbwa32nx_dcdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_dcdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_dcdu.Name = "menu_webpanel_fbwa32nx_dcdu";
+            this.menu_webpanel_fbwa32nx_dcdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_dcdu.Text = "DCDU";
+            // 
+            // menu_webpanel_fbwa32nx_isis
+            // 
+            this.menu_webpanel_fbwa32nx_isis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_isis.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_isis.Name = "menu_webpanel_fbwa32nx_isis";
+            this.menu_webpanel_fbwa32nx_isis.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_isis.Text = "ISIS";
+            // 
+            // menu_webpanel_fbwa32nx_fcu
+            // 
+            this.menu_webpanel_fbwa32nx_fcu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_fcu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_fcu.Name = "menu_webpanel_fbwa32nx_fcu";
+            this.menu_webpanel_fbwa32nx_fcu.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_fcu.Text = "FCU";
+            // 
+            // menu_webpanel_fbwa32nx_rmp
+            // 
+            this.menu_webpanel_fbwa32nx_rmp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_webpanel_fbwa32nx_rmp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_webpanel_fbwa32nx_rmp.Name = "menu_webpanel_fbwa32nx_rmp";
+            this.menu_webpanel_fbwa32nx_rmp.Size = new System.Drawing.Size(180, 24);
+            this.menu_webpanel_fbwa32nx_rmp.Text = "RMP";
             // 
             // StartupForm
             // 
@@ -316,12 +748,54 @@ namespace MSFSTouchPanel.TouchPanelHost
         private System.Windows.Forms.ToolStripMenuItem menuRestartServer;
         private System.Windows.Forms.ToolStripMenuItem menuClearClientActionLog;
         private System.Windows.Forms.ToolStripMenuItem menuClearServerLog;
-        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000PFD;
-        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000MFD;
         private DarkUI.Controls.DarkTextBox txtServerIP;
         private DarkUI.Controls.DarkTextBox txtClientLogMessages;
         private DarkUI.Controls.DarkTextBox txtServerLogMessages;
-        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000WebPFD;
-        private System.Windows.Forms.ToolStripMenuItem menuLaunchG1000WebMFD;
+        private System.Windows.Forms.ToolStripMenuItem winPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem g1000NXiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_g1000nxi_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_g1000nxi_mfd;
+        private System.Windows.Forms.ToolStripMenuItem webPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem g1000NXiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_g1000nxi_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_g1000nxi_mfd;
+        private System.Windows.Forms.ToolStripMenuItem buttonsPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem g1000NXiToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem menu_buttonpanel_g1000nxi_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_buttonpanel_g1000nxi_mfd;
+        private System.Windows.Forms.ToolStripMenuItem asoboCJ4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_cj4_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_cj4_mfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_cj4_fmc;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_cj4_sai;
+        private System.Windows.Forms.ToolStripMenuItem asoboCJ4ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_cj4_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_cj4_mfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_cj4_fmc;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_cj4_sai;
+        private System.Windows.Forms.ToolStripMenuItem buttonFrameOnlyPanelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem g1000NXiToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem menu_buttonpanelframeonly_g1000nxi_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_buttonpanelframeonly_g1000nxi_mfd;
+        private System.Windows.Forms.ToolStripMenuItem flyByWireA32NXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_mfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_eicas_1;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_eicas_2;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_cdu;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_dcdu;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_isis;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_fcu;
+        private System.Windows.Forms.ToolStripMenuItem menu_winpanel_fbwa32nx_rmp;
+        private System.Windows.Forms.ToolStripMenuItem flyByWireA32NXToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_pfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_mfd;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_eicas_1;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_eicas_2;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_cdu;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_dcdu;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_isis;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_fcu;
+        private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_rmp;
     }
 }

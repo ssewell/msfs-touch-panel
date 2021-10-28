@@ -25,8 +25,14 @@ namespace MSFSTouchPanel.TouchPanelHost.Controllers
         [HttpGet("/getdebuggerpagelist")]
         public string GetDebuggerPageList()
         {
-            
-            return GetCoherentDebuggerPageList().Result;
+            try
+            {
+                return GetCoherentDebuggerPageList().Result;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private async Task<string> GetCoherentDebuggerPageList()

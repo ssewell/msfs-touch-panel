@@ -22,7 +22,7 @@ const SimConnectDataProvider = ({ children }) => {
             requestInterval = 500;
             
         const requestData = () => {
-            fetch('getdata')
+            fetch('/getdata')
                 .then(async response => {
                     return await response.json();
                 })

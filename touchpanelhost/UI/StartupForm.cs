@@ -14,11 +14,6 @@ namespace MSFSTouchPanel.TouchPanelHost
         private SynchronizationContext _syncRoot;
         private IWebHost _webHost;
 
-        private G1000PFDForm _pfdForm;
-        private G1000MFDForm _mfdForm;
-
-        private G1000NXiForm _g1000NxiForm;
-
         public StartupForm()
         {
             InitializeComponent();
@@ -43,25 +38,62 @@ namespace MSFSTouchPanel.TouchPanelHost
             menuRestartServer.Click += menuItem_Clicked;
             menuClearClientActionLog.Click += menuItem_Clicked;
             menuClearServerLog.Click += menuItem_Clicked;
-            menuLaunchG1000PFD.Click += menuItem_Clicked;
-            menuLaunchG1000MFD.Click += menuItem_Clicked;
-            menuLaunchG1000WebPFD.Click += menuItem_Clicked;
-            menuLaunchG1000WebMFD.Click += menuItem_Clicked;
+
+            menu_buttonpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
+            menu_buttonpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+            menu_buttonpanelframeonly_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
+            menu_buttonpanelframeonly_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+
+            menu_winpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_cj4_pfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_cj4_mfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_cj4_fmc.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_cj4_sai.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_cdu.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_dcdu.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_eicas_1.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_eicas_2.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_fcu.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_isis.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_mfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_pfd.Click += experimentalMenuItem_Clicked;
+            menu_winpanel_fbwa32nx_rmp.Click += experimentalMenuItem_Clicked;
+
+            menu_webpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_cj4_pfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_cj4_mfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_cj4_fmc.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_cj4_sai.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_cdu.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_dcdu.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_eicas_1.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_eicas_2.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_fcu.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_isis.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_mfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_pfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_rmp.Click += experimentalMenuItem_Clicked;
+
         }
 
         public string HostIP
         {
-            set { _syncRoot.Post((arg) =>
+            set
             {
-                var ip = arg as string;
-                if (ip != null)
-                    txtServerIP.Text = ip;
-            }, value); }
+                _syncRoot.Post((arg) =>
+          {
+              var ip = arg as string;
+              if (ip != null)
+                  txtServerIP.Text = ip;
+          }, value);
+            }
         }
 
         private void HandleOnServerLogged(object sender, EventArgs<string> e)
         {
-            if(_syncRoot != null)
+            if (_syncRoot != null)
                 _syncRoot.Post((arg) =>
                 {
                     var logMessages = arg as string;
@@ -114,7 +146,7 @@ namespace MSFSTouchPanel.TouchPanelHost
                 }
             }
         }
-                private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ShowInTaskbar = true;
             notifyIcon1.Visible = false;
@@ -143,27 +175,44 @@ namespace MSFSTouchPanel.TouchPanelHost
                 case "menuClearClientActionLog":
                     txtClientLogMessages.Clear();
                     break;
-                case "menuLaunchG1000PFD":
-                    if(_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
-                        _g1000NxiForm = new G1000NXiForm("PFD");
-                    _g1000NxiForm.Show();
-                    break;
-                case "menuLaunchG1000MFD":
-                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
-                        _g1000NxiForm = new G1000NXiForm("MFD");
-                    _g1000NxiForm.Show();
-                    break;
-                case "menuLaunchG1000WebPFD":
-                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
-                        _g1000NxiForm = new G1000NXiForm("PFDWEB");
-                    _g1000NxiForm.Show();
-                    break;
-                case "menuLaunchG1000WebMFD":
-                    if (_g1000NxiForm == null || _g1000NxiForm.IsDisposed)
-                        _g1000NxiForm = new G1000NXiForm("MFDWEB");
-                    _g1000NxiForm.Show();
-                    break;
             }
+        }
+
+        private void experimentalMenuItem_Clicked(object sender, EventArgs e)
+        {
+            var itemName = ((ToolStripMenuItem)sender).Name;
+
+            var splits = itemName.Split('_');
+
+            var format = splits[1];
+            var planeType = splits[2];
+            var panel = splits[3];
+
+            for(var i = 4; i < splits.Length; i++)
+                panel = String.Join('_', new String[] { panel, splits[i] });
+
+            switch (format)
+            {
+                case "buttonpanel":
+                    var buttonPanelForm = new ButtonPanelForm(format, planeType, panel, false);
+                    buttonPanelForm.Show();
+                    break;
+                case "buttonpanelframeonly":
+                    var buttonPanelFrameForm = new ButtonPanelForm(format, planeType, panel, true);
+                    buttonPanelFrameForm.Show();
+                    break;
+                case "winpanel":
+                    var panelForm = new WinPanelForm(planeType, panel);
+                    panelForm.Show();
+                    break;
+                case "webpanel":
+                    var url = $"http://localhost:5000/webpanel/{planeType.ToLower()}/{panel.ToLower()}";
+                    System.Diagnostics.Process.Start("explorer", url);
+                    break;
+                
+            }
+
+            
         }
     }
 }

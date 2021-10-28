@@ -53,7 +53,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="UI\G1000NXiForm.cs">
+	  <Compile Update="UI\WinPanelForm.cs">
+	    <SubType>Form</SubType>
+	  </Compile>
+	  <Compile Update="UI\ButtonPanelForm.cs">
 	    <SubType>Form</SubType>
 	  </Compile>
 	</ItemGroup>

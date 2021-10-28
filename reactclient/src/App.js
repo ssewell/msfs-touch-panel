@@ -70,8 +70,8 @@ const App = () => {
     const classes = useStyles();
     const { configurationData } = useLocalStorageData();
     const [ mapOpen, setMapOpen] = useState(false);
-    const { experimentalItem } = useParams();
-    const [ experimentalOpen, setExperimentalOpen] = useState(!(experimentalItem == undefined));
+    const { planetype, panel, frameonly } = useParams();
+    const [ experimentalOpen, setExperimentalOpen] = useState(!(planetype == undefined));
 
     useEffect(() => {
         if(experimentalOpen)
@@ -79,37 +79,36 @@ const App = () => {
     }, []);
 
     const handleExperimentalOpenChanged = () => {
-        if(experimentalItem !== undefined)
+        if(planetype !== undefined)
             setExperimentalOpen(!experimentalOpen)
     }
 
     return useMemo(() => (
-       
-            <SimConnectDataProvider>
-                <CssBaseline />
-                <Container className={!experimentalOpen ? classes.rootUseMediaQueryWidth : classes.rootFullWidth}>
-                    <div className={classes.appbar}>
-                        <ApplicationBar
-                            mapOpenChanged={() => setMapOpen(!mapOpen)}
-                            experimentalOpenChanged={() =>  handleExperimentalOpenChanged()}
-                            experimentalLabel={experimentalItem == undefined ? null : experimentalItem.toUpperCase()}>
-                        </ApplicationBar>
+        <SimConnectDataProvider>
+            <CssBaseline />
+            <Container className={!experimentalOpen ? classes.rootUseMediaQueryWidth : classes.rootFullWidth}>
+                <div className={classes.appbar}>
+                    <ApplicationBar
+                        mapOpenChanged={() => setMapOpen(!mapOpen)}
+                        experimentalOpenChanged={() =>  handleExperimentalOpenChanged()}
+                        experimentalLabel={planetype == undefined ? null : planetype.toUpperCase()}>
+                    </ApplicationBar>
+                </div>
+                {experimentalOpen && planetype.toLowerCase() === 'g1000nxi' &&
+                    <div className={classes.aspectRatioPanelContainer}>
+                        <div className={classes.aspectRatioContentMfd}>
+                            <G1000NXiPanel panel={panel.toUpperCase()} frameonly={JSON.parse(String(frameonly).toLowerCase())}></G1000NXiPanel>
+                        </div>
                     </div>
-                    {experimentalOpen && experimentalItem != undefined &&
-                        <div className={classes.aspectRatioPanelContainer}>
-                            <div className={classes.aspectRatioContentMfd}>
-                                <G1000NXiPanel functionDisplay={experimentalItem.toUpperCase()}></G1000NXiPanel>
-                            </div>
-                        </div>
-                    }
-                    {!experimentalOpen &&
-                        <div className={classes.panelContainer}>
-                            <PanelContainer mapOpen={mapOpen}></PanelContainer>
-                        </div>
-                    }
-                </Container>
-            </SimConnectDataProvider>
-    ), [classes, configurationData, mapOpen, experimentalOpen, experimentalItem]);
+                }
+                {!experimentalOpen &&
+                    <div className={classes.panelContainer}>
+                        <PanelContainer mapOpen={mapOpen}></PanelContainer>
+                    </div>
+                }
+            </Container>
+        </SimConnectDataProvider>
+    ), [classes, configurationData, mapOpen, experimentalOpen]);
 }
 
 export default App
