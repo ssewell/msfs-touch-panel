@@ -7,13 +7,20 @@ var bodyNodeId;
 var headNodeId;
 var socketInterval;
 
-window.onload = reportWindowSize;
 window.onresize = reportWindowSize;
 
 function reportWindowSize() {
-    var Page = document.getElementById('container');
-    var zoomLevel = (parseInt(window.innerWidth) / 1024.0 - 1) * 100;
-    Page.style.zoom = (100 + zoomLevel).toFixed(2) + '%';
+    var body = document.getElementById('container');
+    var vcockpit = document.getElementById('panel');
+
+    if(vcockpit === null) 
+        body.style.zoom = '100.00%'
+    else{
+        var pageWidth = parseInt(vcockpit.childNodes[0].style.width, 10);
+        var zoomLevel = (parseInt(window.innerWidth) / pageWidth * 1.0 - 1) * 100;
+        body.style.zoom = (100 + zoomLevel).toFixed(2) + '%';
+    }
+
     return false;
 }
 
@@ -69,7 +76,8 @@ const handleSetup2 = (nodeId) => {
     // force entire html to refresh
     setTimeout(() => {
         var panel = document.getElementById('panel');
-        panel.innerHTML = panel.innerHTML;
+        //panel.innerHTML = panel.innerHTML;
+        reportWindowSize();
     }, 2000)
 }
 
@@ -117,7 +125,7 @@ const createElement = (node, createPlaceHolder) => {
         {
             var ph = document.createElement('place-holder');
             ph.setAttribute('name', node.nodeId);
-            ph.innerHTML = node.nodeValue;
+            ph.innerHTML = sanitize(node.nodeValue);
             return ph;
         }
         
@@ -145,7 +153,7 @@ const createElement = (node, createPlaceHolder) => {
                 var newElement = createElement(childNode, isPlaceHolderType(node.localName))
 
                 if(typeof newElement === 'string')
-                    element.innerHTML = newElement;
+                    element.innerHTML = sanitize(newElement);
                 else
                     element.append(newElement);
             });
@@ -191,8 +199,8 @@ const insertNode = (data) => {
         }
         else
         {
-            if(parent.innerHTML !== data.node.nodeValue)
-                parent.innerHTML = data.node.nodeValue;
+            if(parent.innerHTML !== sanitize(data.node.nodeValue))
+                parent.innerHTML = sanitize(data.node.nodeValue);
         }
     }
     else if (data.node.nodeType === 1) {
@@ -202,11 +210,10 @@ const insertNode = (data) => {
 }
 
 const characterDataModified = (data) => {
-
     var element = document.getElementsByName(data.nodeId)[0];
 
-    if(element !== undefined && element.innerHTML !== data.characterData)
-        element.innerHTML = data.characterData;
+    if(element !== undefined && element.innerHTML !== sanitize(data.characterData))
+        element.innerHTML = sanitize(data.characterData);
 }
 
 const inlineStyleInvalidated = (data) => {
@@ -277,6 +284,10 @@ const childNodeCountUpdated = (data) => {
     socket.send(JSON.stringify(msg));
 }
 
+const sanitize = (text) => {
+    return text.replace('<','&lt;');
+}
+
 const socketOpened = () => {
     console.log('Server connected!');
 }
@@ -319,8 +330,8 @@ const socketReceivedMessage = (msg) => {
             {
                 var element = document.getElementsByName(data.params.parentNodeId)[0];
 
-                if (element.innerHTML !== data.params.node.nodeValue)
-                    element.innerHTML = data.params.node.nodeValue;
+                if (element.innerHTML !== sanitize(data.params.node.nodeValue))
+                    element.innerHTML = sanitize(data.params.node.nodeValue);
             }
                 
         }
@@ -336,7 +347,7 @@ const socketReceivedMessage = (msg) => {
 
             if(data.params.parentId === headNodeId)
             {
-                data.params.nodes = data.params.nodes.filter(childNode => childNode.localName !== 'script' && childNode.localName !== 'title' && childNode.localName !== 'meta' && childNode.localName !== 'style');
+                data.params.nodes = data.params.nodes.filter(childNode => childNode.localName !== 'title' && childNode.localName !== 'meta');
             }
 
             if (parent !== undefined) {
@@ -354,6 +365,14 @@ const socketReceivedMessage = (msg) => {
         else if (data.method === 'DOM.childNodeCountUpdated')
         {
             childNodeCountUpdated(data.params);
+        }
+        else if (data.method === 'DOM.pseudoElementAdded')
+        {
+            console.log(msg);
+        }
+        else if (data.method === 'DOM.pseudoElementRemoved')
+        {
+            console.log(msg);
         }
         else {
             console.log(msg);
