@@ -41,24 +41,8 @@ namespace MSFSTouchPanel.TouchPanelHost
 
             menu_buttonpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
             menu_buttonpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
-            menu_buttonpanelframeonly_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
-            menu_buttonpanelframeonly_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
-
-            menu_winpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_cj4_pfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_cj4_mfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_cj4_fmc.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_cj4_sai.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_cdu.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_dcdu.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_eicas_1.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_eicas_2.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_fcu.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_isis.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_mfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_pfd.Click += experimentalMenuItem_Clicked;
-            menu_winpanel_fbwa32nx_rmp.Click += experimentalMenuItem_Clicked;
+            menu_framepanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
+            menu_framepanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
 
             menu_webpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
             menu_webpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
@@ -72,10 +56,9 @@ namespace MSFSTouchPanel.TouchPanelHost
             menu_webpanel_fbwa32nx_eicas_2.Click += experimentalMenuItem_Clicked;
             menu_webpanel_fbwa32nx_fcu.Click += experimentalMenuItem_Clicked;
             menu_webpanel_fbwa32nx_isis.Click += experimentalMenuItem_Clicked;
-            menu_webpanel_fbwa32nx_mfd.Click += experimentalMenuItem_Clicked;
-            menu_webpanel_fbwa32nx_pfd.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_nd_template_1.Click += experimentalMenuItem_Clicked;
+            menu_webpanel_fbwa32nx_pfd_template_1.Click += experimentalMenuItem_Clicked;
             menu_webpanel_fbwa32nx_rmp.Click += experimentalMenuItem_Clicked;
-
         }
 
         public string HostIP
@@ -191,28 +174,9 @@ namespace MSFSTouchPanel.TouchPanelHost
             for(var i = 4; i < splits.Length; i++)
                 panel = String.Join('_', new String[] { panel, splits[i] });
 
-            switch (format)
-            {
-                case "buttonpanel":
-                    var buttonPanelForm = new ButtonPanelForm(format, planeType, panel, false);
-                    buttonPanelForm.Show();
-                    break;
-                case "buttonpanelframeonly":
-                    var buttonPanelFrameForm = new ButtonPanelForm(format, planeType, panel, true);
-                    buttonPanelFrameForm.Show();
-                    break;
-                case "winpanel":
-                    var panelForm = new WinPanelForm(planeType, panel);
-                    panelForm.Show();
-                    break;
-                case "webpanel":
-                    var url = $"http://localhost:5000/webpanel/{planeType.ToLower()}/{panel.ToLower()}";
-                    System.Diagnostics.Process.Start("explorer", url);
-                    break;
-                
-            }
 
-            
+            var panelForm = new PanelForm(format, planeType, panel);
+            panelForm.Show();
         }
     }
 }

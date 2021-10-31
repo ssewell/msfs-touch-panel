@@ -6,6 +6,8 @@ import ExpandableCard from '../../Control/ExpandableCard';
 import Adf from '../../ControlGroup/Default/Adf';
 import Obs from '../../ControlGroup/Default/Obs';
 import NavRadio from '../../ControlGroup/Default/NavRadio'
+import Transponder from '../../ControlGroup/Default/Transponder';
+import Barometer from '../../ControlGroup/Default/Barometer';
 
 const useStyles = makeStyles((theme) => ({
     grid: theme.custom.panelGrid,
@@ -22,7 +24,7 @@ const NavPanel = () => {
     const classes = useStyles();
 
     return (
-        <ExpandableCard title='Navigation'>
+        <ExpandableCard title='Navigation / Transponder / Barometer'>
             <Grid container className={classes.grid}>
                 <Grid item xs={5}>
                     <NavRadio
@@ -63,7 +65,14 @@ const NavPanel = () => {
                         entrySetAction={simActions.Navigation.OBS2.set}
                         entrySelectAction={simActions.Navigation.OBS2.select} />
                 </Grid>
-                <Grid item xs={5} className={classes.navButton}></Grid>                
+                <Grid container item xs={5}>
+                    <div style={{width: '55%'}}>
+                        <Transponder></Transponder>
+                    </div>
+                    <div style={{width: '45%', paddingLeft: '8px'}}>
+                        <Barometer></Barometer>
+                    </div>
+                </Grid>
             </Grid>
         </ExpandableCard>
     )

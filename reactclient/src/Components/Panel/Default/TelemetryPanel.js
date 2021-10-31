@@ -45,7 +45,7 @@ const TelemetryPanel = () => {
     const waitingColor = 'rgb(250, 186, 57, 1)';
     const offColor = 'rgb(97, 99, 105, 1)';
 
-    const { PLANE_ALTITUDE, PLANE_AIRSPEED, PLANE_VERTICAL_SPEED, PLANE_HEADING, FLAPS_ANGLE, TRIM_PERCENT,
+    const { PLANE_ALTITUDE, PLANE_AIRSPEED, PLANE_VERTICAL_SPEED, PLANE_HEADING, FLAPS_ANGLE, ELEVATOR_TRIM_PERCENT,
         ENG_PROP_RPM, ENG_THROTTLE_PERCENT, ENG_MIXTURE_PERCENT, GEAR_CENTER_POSITION, GEAR_LEFT_POSITION,
         GEAR_RIGHT_POSITION } = useSimConnectData().simConnectData;
 
@@ -94,8 +94,8 @@ const TelemetryPanel = () => {
                         <Grid container>
                             <Grid item xs={4}>
                                 <div className={classes.sectionSmall}>
-                                    <Typography variant='body1'>Trim:</Typography>
-                                    <Typography variant='body1'>{TRIM_PERCENT}</Typography>
+                                    <Typography variant='body1'>Elev Trim:</Typography>
+                                    <Typography variant='body1'>{ELEVATOR_TRIM_PERCENT}</Typography>
                                 </div>
                             </Grid>
                             <Grid item xs={4}>
@@ -135,7 +135,7 @@ const TelemetryPanel = () => {
                 </Grid>
             </Grid>
         </ExpandableCard >
-    ), [classes, PLANE_ALTITUDE, PLANE_AIRSPEED, PLANE_VERTICAL_SPEED, PLANE_HEADING, FLAPS_ANGLE, TRIM_PERCENT, ENG_PROP_RPM,
+    ), [classes, PLANE_ALTITUDE, PLANE_AIRSPEED, PLANE_VERTICAL_SPEED, PLANE_HEADING, FLAPS_ANGLE, ELEVATOR_TRIM_PERCENT, ENG_PROP_RPM,
         ENG_THROTTLE_PERCENT, ENG_MIXTURE_PERCENT, GEAR_CENTER_POSITION, GEAR_LEFT_POSITION, GEAR_RIGHT_POSITION])
 }
 

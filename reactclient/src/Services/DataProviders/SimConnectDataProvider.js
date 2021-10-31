@@ -9,6 +9,7 @@ const SimConnectDataProvider = ({ children }) => {
     const [networkStatus, setNetworkStatus] = useState(null);
     const [arduinoStatus, setArduinoStatus] = useState(null);
     const [simConnectSystemEvent, setSimConnectSystemEvent] = useState(null);
+    const [g1000NxiFlightPlan, setG1000NxiFlightPlan] = useState(null);
 
     // request data from SimConnect on timer interval
     useEffect(() => {
@@ -53,6 +54,7 @@ const SimConnectDataProvider = ({ children }) => {
                     if (result.data !== null || result.lvar !== null) {
                         var simData = JSON.parse(result.data);
                         var simLVarData = JSON.parse(result.lVar);
+                        setG1000NxiFlightPlan(result.g1000NxiFlightPlan !== '' ? JSON.parse(result.g1000NxiFlightPlan) : null);
 
                         if ((simData !== null && simData !== []) || (simLVarData !== null && simLVarData !== [])) {
                             setSimConnectData(parseRequestData(simData, simLVarData));
@@ -83,7 +85,7 @@ const SimConnectDataProvider = ({ children }) => {
     }, [])
 
     return (
-        <SimConnectDataContext.Provider value={{ simConnectData, networkStatus, arduinoStatus, simConnectSystemEvent }}>
+        <SimConnectDataContext.Provider value={{ simConnectData, networkStatus, arduinoStatus, simConnectSystemEvent, g1000NxiFlightPlan }}>
             {children}
         </SimConnectDataContext.Provider>
     )

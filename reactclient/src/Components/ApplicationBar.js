@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { useSimConnectData } from '../Services/DataProviders/SimConnectDataProvider';
-import { useLocalStorageData } from '../LocalStorageProvider';
+import { useLocalStorageData } from '../Services/LocalStorageProvider';
 import { planeType } from '../planeType';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -54,7 +54,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const ApplicationBar = ({ mapOpenChanged, experimentalOpenChanged, experimentalMenuSelected, experimentalLabel }) => {
+const ApplicationBar = ({ mapOpenChanged , experimentalOpenChanged}) => {
     const classes = useStyles();
     const { networkStatus, arduinoStatus, simConnectSystemEvent } = useSimConnectData();
     const { updatePlaneProfile } = useLocalStorageData();
@@ -87,7 +87,7 @@ const ApplicationBar = ({ mapOpenChanged, experimentalOpenChanged, experimentalM
                             </IconButton>
                         </Grid>
                         <Grid item xs={6}>
-                            <Typography variant="h6" className={classes.planeTitle}>{PLANE_TITLE === '' ? 'MSFS Touch Panel' : PLANE_TITLE}{experimentalLabel !== null ? ' - Experimental ' + experimentalLabel : null}</Typography>
+                            <Typography variant="h6" className={classes.planeTitle}>MSFS Touch Panel{PLANE_TITLE === '' ? '' : ' - ' + PLANE_TITLE}</Typography>
                         </Grid>
                         <Grid item xs={3} className={classes.menuIcons}>
                             <IconButton color='inherit' aria-label='map' size='small' className={classes.menuButton} onClick={() => mapOpenChanged()}>

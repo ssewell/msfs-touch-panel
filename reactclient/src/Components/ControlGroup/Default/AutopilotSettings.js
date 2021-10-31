@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useRef } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { useSimConnectData } from '../../../Services/DataProviders/SimConnectDataProvider';
-import { useLocalStorageData } from '../../../LocalStorageProvider';
+import { useLocalStorageData } from '../../../Services/LocalStorageProvider';
 import { simActions } from '../../../Services/ActionProviders/simConnectActionHandler';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';

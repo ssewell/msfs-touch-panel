@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { useSimConnectData } from '../../../Services/DataProviders/SimConnectDataProvider';
-import { useLocalStorageData } from '../../../LocalStorageProvider';
+import { useLocalStorageData } from '../../../Services/LocalStorageProvider';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import NumericEntryDisplay from '../../Control/NumericEntryDisplay';

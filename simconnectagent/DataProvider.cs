@@ -64,7 +64,7 @@ namespace MSFSTouchPanel.SimConnectAgent
             if(filePath == null)
                 return JsonConvert.SerializeObject(new List<ExpandoObject>());
 
-            return FlightPlan.ParseCustomFLT(filePath);
+            return FlightPlanProvider.ParseCustomFLT(filePath);
         }
 
         private void HandleDataRequested(object sender, ElapsedEventArgs e)

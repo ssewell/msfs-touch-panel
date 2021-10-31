@@ -2,6 +2,8 @@
 {
     public enum ActionEvent
     {
+        NO_ACTION,
+
         KEY_SELECT_1,
         KEY_SELECT_2,
         KEY_SELECT_3,
@@ -153,8 +155,6 @@
 
         KEY_SIM_RATE_INCR,
         KEY_SIM_RATE_DECR,
-
-        NO_ACTION,
 
         // G1000 NXi
         CUSTOM_PFD_MAP_SELECTED,

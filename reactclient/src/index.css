@@ -20,3 +20,22 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.leaflet-tooltip-pane
+{
+    z-index: 500 !important;
+}
+
+.leaflet-icon 
+{
+    font-size: 1.5em;
+    padding: 3px 2px 3px 2px !important;
+    vertical-align: bottom;
+}
+
+.easy-button-button
+{
+    font-size: 1.4em;
+    padding: 0 !important;
+    border-width: 0;
+}

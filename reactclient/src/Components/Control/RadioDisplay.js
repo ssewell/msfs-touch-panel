@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { useSimConnectData } from '../../Services/DataProviders/SimConnectDataProvider';
-import { useLocalStorageData } from '../../LocalStorageProvider';
+import { useLocalStorageData } from '../../Services/LocalStorageProvider';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';

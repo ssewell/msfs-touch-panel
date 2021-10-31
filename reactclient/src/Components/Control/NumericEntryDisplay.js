@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
-import { useLocalStorageData } from '../../LocalStorageProvider';
+import { useLocalStorageData } from '../../Services/LocalStorageProvider';
 import { Typography } from '@mui/material';
 import SevenSegmentDisplay from '../Control/SevenSegmentDisplay';
 import NumPad from '../ControlDialog/NumPad';
@@ -70,8 +70,6 @@ const NumericEntryDisplay = ({ id, initialValue, labelLeft, labelRight, numberOf
         updatedData['directInput_' + id] = value;
         updateConfigurationData(updatedData);
     }
-
-    console.log(stepperOnly);
 
     return (
         <div>

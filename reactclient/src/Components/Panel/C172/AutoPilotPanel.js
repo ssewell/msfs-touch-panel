@@ -2,7 +2,7 @@ import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import Grid from '@mui/material/Grid';
 import ExpandableCard from '../../Control/ExpandableCard';
-import AutoPilotMaster from '../../ControlGroup/C172_G1000NXi/AutopilotMaster';
+import AutoPilotMaster from '../../ControlGroup/C172/AutopilotMaster';
 import AutoPilotSettings from '../../ControlGroup/Default/AutopilotSettings';
 
 const useStyles = makeStyles((theme) => ({

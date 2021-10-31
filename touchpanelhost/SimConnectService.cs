@@ -46,6 +46,12 @@ namespace MSFSTouchPanel.TouchPanelHost
                 {
                     var value = $"{e.Value}-{DateTime.Now.Ticks}";
                     _memCache.Set("simSystemEvent", value);
+
+                    // Clear G1000NXi cache
+                    if(e.Value == "SIMSTART" || e.Value == "SIMSTOP")
+                    {
+                        _memCache.Set("g1000nxiFlightPlan", string.Empty);
+                    }
                 }
                 catch { }
             };
@@ -83,6 +89,18 @@ namespace MSFSTouchPanel.TouchPanelHost
         {
             return _simConnectorProvider.GetFlightPlan();
         }
+
+        public void ProcessG1000NxiFlightPlan(G1000NxiFlightPlanRawData data)
+        {
+            try 
+            {
+                var waypoints = G1000NxiFlightPlanProvider.ProcessFlightPlan(data);
+
+                if (waypoints != null)
+                    _memCache.Set("g1000nxiFlightPlan", waypoints); 
+            } 
+            catch { }
+        }
     }
 
     public interface ISimConnectService
@@ -96,5 +114,7 @@ namespace MSFSTouchPanel.TouchPanelHost
         public void ExecAction(string action, SimActionType actionType, string value, int executionCount, PlaneProfile planeProfile);
 
         public string GetFlightPlan();
+
+        public void ProcessG1000NxiFlightPlan(G1000NxiFlightPlanRawData data);
     }
 }

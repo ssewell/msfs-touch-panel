@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
-import { useLocalStorageData } from '../../LocalStorageProvider';
+import { useLocalStorageData } from '../../Services/LocalStorageProvider';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Switch from '@mui/material/Switch';

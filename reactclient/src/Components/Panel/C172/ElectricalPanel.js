@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import ExpandableCard from '../../Control/ExpandableCard';
 import ElectricalMaster from '../../ControlGroup/Default/ElectricalMaster';
 import ElectricalAvionics from '../../ControlGroup/Default/ElectricalAvionics';
-import ElectricalLights from '../../ControlGroup/C172_G1000NXi/ElectricalLights';
+import ElectricalLights from '../../ControlGroup/C172/ElectricalLights';
 
 const useStyles = makeStyles((theme) => ({
     grid: theme.custom.panelGrid

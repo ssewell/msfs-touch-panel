@@ -1,5 +1,5 @@
 import React, { Suspense, useMemo, createElement } from 'react';
-import { useLocalStorageData } from '../../LocalStorageProvider';
+import { useLocalStorageData } from '../../Services/LocalStorageProvider';
 import makeStyles from '@mui/styles/makeStyles';
 import { Typography } from '@mui/material';
 import MapPanel from './Default/MapPanel';

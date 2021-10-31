@@ -4,15 +4,17 @@
 The Main screen contains most of the flight control functions and are touch enabled. Each panel can be collapsed to display only what is needed at that moment. Panels can also be hidden via the [Configuration Settings](#configuration-settings) menu.
 
 <div float="left">
-  <img src="screenshots/v0.1/screenshot1.png" width="480" hspace="10" />
-  <img src="screenshots/v0.1/screenshot10.png" width="480" hspace="10" valign="top"/> 
+  <img src="screenshots/app/screenshot1.png" width="480" hspace="10" />
+  <img src="screenshots/app/screenshot10.png" width="480" hspace="10" valign="top"/> 
 </div>
+
+<br/>
 
 ## Menu Bar
 
 The menu bar displays the current connection status of the application as well as buttons to show configuration settings. It also displays the current active plane profile.
 
-<img src="screenshots/v0.1/screenshot11.png" width="980" hspace="10" />
+<img src="screenshots/app/screenshot11.png" width="980" hspace="10" />
 
 Explanation of menu bar icons from the left to right:
 
@@ -23,14 +25,14 @@ Explanation of menu bar icons from the left to right:
 
 	The corresponding plane profile will automatically activate when you select the desired plane for simulation. You can also manually select another plane profile but some plane functions may not work correctly. More plane profiles will be added in future releases.
 				
-	<img src="screenshots/v0.1/screenshot9.png"  hspace="10"/>
+	<img src="screenshots/app/screenshot9.png"  hspace="10"/>
 
-* Experimental feature - This is used by experimental feature to go back and forth between the application and the experimental screens.
+* Experimental feature - This is used toggle between experimental feature and the regular app.
 * Configuration Settings
 
 	The configuration settings allow you to adjust various features of the application.
 			
-	<img src="screenshots/v0.1/screenshot8.png" hspace="10"/>
+	<img src="screenshots/app/screenshot8.png" hspace="10"/>
 		
 	* **Data Refresh Interval** - data will refresh every X milliseconds. The valid refresh rate is between 50ms to 5000ms. If the application seems slow or unresponsive, you can increase the refresh interval. The refresh interval will affect how fast the telemetry and UI is being updated. For any recently built computer, the lowest refresh interval will work just fine.		
 	* **Map Refresh Interval** - map will refresh every X milliseconds. The valid refresh rate is between 50ms to 5000ms. When using plane following, the map will move smoother when using lower refresh interval.
@@ -38,10 +40,13 @@ Explanation of menu bar icons from the left to right:
 	* [Use Arduino](#arduino-input-method) - enable input using Arduino hardware.
 	* **Panels** - show or hide the selected panel on the main screen. The show/hide panel configuration is saved per plane configuration. 
 
+<br/>
 
 ## Panels
 The flight control panels consist of some of the frequently use functions during simulation. The use of the panel is pretty self-explanatory. For any of the button, when active (such as Autopilot Master), it will light up in green. Any button or input that can be selected or changed, it will light up orange when hover or press. For numeric entry, a corresponding popup panel will be available for input when press.
 
+
+<br/>
 
 ## Input Method
 
@@ -49,7 +54,7 @@ There are 4 ways to input data into flight control. For choosing direct input or
 
 * Direct Input
 
-	<img src="screenshots/v0.1/screenshot5.png" hspace="10"/>
+	<img src="screenshots/app/screenshot5.png" hspace="10"/>
 	
 	* 	You can enter numeric data directly using the popup number pad. The accept ('Check') button will not light up if the number you enter is invalid. For example, if you try to enter 199.000 for COM radio, the "Check" button will not light up. Also, invalid keypad number will be disabled for the input field where applicable. 
 	
@@ -62,7 +67,7 @@ There are 4 ways to input data into flight control. For choosing direct input or
 
 * Knob Input Method
 
-	<img src="screenshots/v0.1/screenshot4.png" hspace="10"/>
+	<img src="screenshots/app/screenshot4.png" hspace="10"/>
 
 	* 	For a more immersive and fun way to enter data. The dual knobs behaves exactly like the dual knob control in flight instrument panel within the simulation. 
 	 
@@ -76,7 +81,7 @@ There are 4 ways to input data into flight control. For choosing direct input or
 
 * Stepper Input Method
 
-	<img src="screenshots/v0.1/screenshot6.png" hspace="10"/>
+	<img src="screenshots/app/screenshot6.png" hspace="10"/>
 
 	* 	If you prefer, the stepper input gives a set of small arrows and a set of big arrows to input data. The small arrows change the data value in a smaller increment and the big arrows change the data value in a bigger increment. 
 	 
@@ -87,6 +92,8 @@ There are 4 ways to input data into flight control. For choosing direct input or
 	* 	To exit or cancel your input, either press the "X" button or press anywhere outside the stepper pad popup.
 	
 	* 	To switch between direct input or stepper input, you can press the "Direct Input" switch at the top. The popup will change to direct input number pad for data entry.
+
+<br/>
 
 ## Arduino Input Method
 
@@ -102,26 +109,15 @@ By activating the COM1 standby field in the application, rotary encoder one will
 
 The joystick control currently has minimal functionality. It is designed to pan the map in the G1000 NXi interface (map panning doesn't work yet in G1000 NXi 0.6 addon as of this writing). The joystick can also be used to switch between fields in the FMS. 
 
-## G1000 NXi PFD/MFD
-For the initial release, G1000 NXi PFD/MFD controls are included. You can launch the control of each function panel by selecting PFD or MFD button on the main screen. ***To use the softkey buttons feature of seeing the real-time softkey labels, you must run the [installation](plugin-extension/G1000NXi/README.md) procedure to add support. Otherwise, the softkeys will still work but the labels will be blank.***
-
-<img src="screenshots/v0.1/screenshot12.png" hspace="10"/>
-
-* At the top of the input panel, a list of softkeys correspond to the PFD/MFD soft buttons at the bottom of the instrumentation panel in MSFS. These softkeys can be activated just like the in-flight panel.
-
-* The dual knob input mirrors the upper and lower FMS in-flight FMS knob. 
-
-* In Arduino, the hardware encoder knob switch buttons also function as CLR and ENT button. 
-
-* There are two additional button to the bottom right, MAP and FMS. By selecting MAP, the knob input will change to map range input control to zoom in and zoom out of the map. A set of joystick buttons will also be available for map panning (currently G1000 NXi map panning doesn't work yet as of v0.6 of the plugin). To get out of MAP control, just select the FMS button or any other input panel buttons to return control to the FMS knob input.
+<br/>
 
 # Map Screen
 
 The map screen gives you a prettier VFR map compare to the MSFS built-in VFR Map. 
 
 <div float="left">
-  <img src="screenshots/v0.1/screenshot2.png" width="480" hspace="10" />
-  <img src="screenshots/v0.1/screenshot3.png" width="480" hspace="10" valign="top"/> 
+  <img src="screenshots/app/screenshot2.png" width="480" hspace="10" />
+  <img src="screenshots/app/screenshot3.png" width="480" hspace="10" valign="top"/> 
 </div>
 
 

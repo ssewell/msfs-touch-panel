@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { useSimConnectData } from '../../../Services/DataProviders/SimConnectDataProvider';
 import { simActions } from '../../../Services/ActionProviders/simConnectActionHandler';

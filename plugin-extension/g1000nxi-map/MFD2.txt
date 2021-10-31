@@ -1,0 +1,2 @@
+this.publisher.pub(topic, data, false, false);
+if(topic === 'fplCalculated') this.onPostFlightPlan();

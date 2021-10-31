@@ -14,7 +14,8 @@ export const simConnectDataTypeFormat = {
     GEAR_LEFT_POSITION:'toFixed0',
     GEAR_RIGHT_POSITION:'toFixed0',
 
-    TRIM_PERCENT: 'toFixed1',
+    ELEVATOR_TRIM_PERCENT: 'toFixed1',
+    AILERON_TRIM_ANGLE: 'toFixed2',
     ENG_THROTTLE_PERCENT: 'toFixed0',
     ENG_MIXTURE_PERCENT: 'toFixed0',
     ENG_PROP_RPM: 'toFixed0',

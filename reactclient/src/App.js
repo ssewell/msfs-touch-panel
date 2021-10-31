@@ -1,114 +1,41 @@
 
-import React, { useMemo, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import LocalStorageProvider from './Services/LocalStorageProvider';
 import SimConnectDataProvider from './Services/DataProviders/SimConnectDataProvider';
-import { useLocalStorageData } from './LocalStorageProvider';
-import makeStyles from '@mui/styles/makeStyles';
-import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import ApplicationBar from './Components/ApplicationBar';
-import PanelContainer from './Components/Panel/PanelContainer';
-import G1000PfdPanel from './Experimental/g1000PfdPanel';
-import G1000NXiPanel from './Experimental/g1000NXiPanel';
+import makeStyles from '@mui/styles/makeStyles';
+import TouchPanel from './TouchPanel';
+import WebPanel from './WebPanel';
+import MapPanel from './Components/Panel/Default/MapPanel';
+
 
 const useStyles = makeStyles((theme) => ({
-    rootUseMediaQueryWidth: {
-        [theme.breakpoints.up('sm')]: { fontSize: '12px' },
-        [theme.breakpoints.up('md')]: { fontSize: '16px' },
-        [theme.breakpoints.up('lg')]: { fontSize: '18px' },
-        [theme.breakpoints.up('xl')]: { fontSize: '18px' },
-        padding: 0,
-        backgroundColor: theme.palette.background.default,
-        height: '100vh',
-        margin: '0 auto',
-    },
-    rootFullWidth: {
-        [theme.breakpoints.up('sm')]: { fontSize: '12px' },
-        [theme.breakpoints.up('md')]: { fontSize: '16px' },
-        [theme.breakpoints.up('lg')]: { fontSize: '18px' },
-        [theme.breakpoints.up('xl')]: { fontSize: '18px' },
-        padding: 0,
-        maxWidth: '100vw',
-        display: 'grid',
-        overflow: 'hidden',
-        maxHeight: '100vh',
-    },
-    appbar: {
+    mapLayout: {
         touchAction: 'none',
-        position: 'fixed',
-        width: '100vw',
-        maxWidth: 'inherit',
-        zIndex: 100,
     },
-    panelContainer: {
-         paddingTop: '35px',
+    mappanel: {
+        height: '100vh',
     },
-    aspectRatioPanelContainer: {
-        paddingTop: '35px',
-    },
-    aspectRatioContentPfd: {
-        width: '100%',
-        aspectRatio: '1408/914',            // PFD with mid panel background image aspect ratio (width/height)
-        overflow: 'hidden',
-        display: 'flex',
-        maxHeight: '95vh',
-        margin: '0 auto',
-        backgroundColor: 'transparent'
-    },
-    aspectRatioContentMfd: {
-        width: '100%',
-        aspectRatio: '1408/914',            // PFD/MFD background image aspect ratio (width/height)
-        overflow: 'hidden',
-        display: 'flex',
-        maxHeight: '95vh',
-        margin: '0 auto',
-        backgroundColor: 'transparent'
-    }
 }));
 
-const App = () => {
+const App = ({experimental, mapPanel = false}) => {
     const classes = useStyles();
-    const { configurationData } = useLocalStorageData();
-    const [ mapOpen, setMapOpen] = useState(false);
-    const { planetype, panel, frameonly } = useParams();
-    const [ experimentalOpen, setExperimentalOpen] = useState(!(planetype == undefined));
+    const [ experimentalOpen, setExperimentalOpen] = useState(experimental);
 
-    useEffect(() => {
-        if(experimentalOpen)
-            document.body.style.backgroundColor = 'transparent';
-    }, []);
-
-    const handleExperimentalOpenChanged = () => {
-        if(planetype !== undefined)
-            setExperimentalOpen(!experimentalOpen)
-    }
-
-    return useMemo(() => (
-        <SimConnectDataProvider>
-            <CssBaseline />
-            <Container className={!experimentalOpen ? classes.rootUseMediaQueryWidth : classes.rootFullWidth}>
-                <div className={classes.appbar}>
-                    <ApplicationBar
-                        mapOpenChanged={() => setMapOpen(!mapOpen)}
-                        experimentalOpenChanged={() =>  handleExperimentalOpenChanged()}
-                        experimentalLabel={planetype == undefined ? null : planetype.toUpperCase()}>
-                    </ApplicationBar>
-                </div>
-                {experimentalOpen && planetype.toLowerCase() === 'g1000nxi' &&
-                    <div className={classes.aspectRatioPanelContainer}>
-                        <div className={classes.aspectRatioContentMfd}>
-                            <G1000NXiPanel panel={panel.toUpperCase()} frameonly={JSON.parse(String(frameonly).toLowerCase())}></G1000NXiPanel>
-                        </div>
+    return (
+        <LocalStorageProvider initialData={{}}>
+            <SimConnectDataProvider>
+                <CssBaseline />
+                { !mapPanel && !experimentalOpen && <TouchPanel experimentalClick={() => setExperimentalOpen(true)}></TouchPanel> }
+                { !mapPanel && experimentalOpen && <WebPanel experimentalClick={() => setExperimentalOpen(false)}></WebPanel> }
+                { mapPanel &&
+                    <div className={classes.mappanel} >
+                        <MapPanel showTelemetry={false}></MapPanel>
                     </div>
                 }
-                {!experimentalOpen &&
-                    <div className={classes.panelContainer}>
-                        <PanelContainer mapOpen={mapOpen}></PanelContainer>
-                    </div>
-                }
-            </Container>
-        </SimConnectDataProvider>
-    ), [classes, configurationData, mapOpen, experimentalOpen]);
+            </SimConnectDataProvider>
+        </LocalStorageProvider>
+    );
 }
 
 export default App

@@ -34,6 +34,8 @@ export const simConnectActionType = {
         AP_VS_VAR_DEC: { type: 'Shared', simAction: 'AP_VS_VAR_DEC' },
 
         AP_FLC_SET: { type: 'Shared', simAction: 'AP_SPD_VAR_SET' },
+        AP_SPD_VAR_INC: { type: 'Shared', simAction: 'AP_SPD_VAR_INC' },
+        AP_SPD_VAR_DEC: { type: 'Shared', simAction: 'AP_SPD_VAR_DEC' },
 
         // COM
         COM1_SELECT: { type: 'Custom', simAction: 'COM1_SELECT' },

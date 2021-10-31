@@ -40,7 +40,9 @@ export const simActions = {
         FLC: {
             hold: () => simConnectPost(simConnectActionType.Shared.AP_FLC_HOLD, 1),
             select: () => simConnectPost(simConnectActionType.Shared.AP_FLC_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.AP_FLC_SET, value)
+            set: (value) => simConnectPost(simConnectActionType.Shared.AP_FLC_SET, value),
+            increase: () => simConnectPost(simConnectActionType.Shared.AP_SPD_VAR_INC, 1),
+            decrease: () => simConnectPost(simConnectActionType.Shared.AP_SPD_VAR_DEC, 1),
         }
     },
 

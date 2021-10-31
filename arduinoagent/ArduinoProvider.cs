@@ -123,7 +123,7 @@ namespace MSFSTouchPanel.ArduinoAgent
                         Thread.Sleep(10);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
                     _serialPort.Close();
                     _serialPort.Open();

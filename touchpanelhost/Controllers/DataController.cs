@@ -3,7 +3,11 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using MSFSTouchPanel.FSConnector;
 using MSFSTouchPanel.Shared;
+using MSFSTouchPanel.SimConnectAgent;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Dynamic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -55,12 +59,13 @@ namespace MSFSTouchPanel.TouchPanelHost.Controllers
                 var arudinoStatus = _memoryCache.Get<bool>("arduinoStatus");
                 var msfsStatus = _memoryCache.Get<bool>("msfsStatus");
                 var simSystemEvent = _memoryCache.Get<string>("simSystemEvent");
+                var g1000nxiFlightPlan = _memoryCache.Get<string>("g1000nxiFlightPlan");
 
-                return new SimConnectData { Data = data, LVar = lvar, MsfsStatus = Convert.ToBoolean(msfsStatus), ArduinoStatus = Convert.ToBoolean(arudinoStatus), SystemEvent = simSystemEvent };
+                return new SimConnectData { Data = data, LVar = lvar, MsfsStatus = Convert.ToBoolean(msfsStatus), ArduinoStatus = Convert.ToBoolean(arudinoStatus), SystemEvent = simSystemEvent, G1000NxiFlightPlan = g1000nxiFlightPlan };
             }
             catch
             {
-                return new SimConnectData { Data = null, LVar = null, MsfsStatus = false, ArduinoStatus = false, SystemEvent = null };
+                return new SimConnectData { Data = null, LVar = null, MsfsStatus = false, ArduinoStatus = false, SystemEvent = null, G1000NxiFlightPlan = null };
             }
         }
 
@@ -85,6 +90,21 @@ namespace MSFSTouchPanel.TouchPanelHost.Controllers
         {
             return _simConnectService.GetFlightPlan();
         }
+
+        [HttpPost("/postflightplan")]
+        public IActionResult PostFlightPlan(G1000NxiFlightPlanRawData data)
+        {
+            try
+            {
+                _simConnectService.ProcessG1000NxiFlightPlan(data);
+            }
+            catch(Exception ex) 
+            {
+                Logger.ServerLog(ex.Message, LogLevel.ERROR);
+            }
+            
+            return Ok();
+        }
     }
 
     public class SimConnectData
@@ -98,6 +118,8 @@ namespace MSFSTouchPanel.TouchPanelHost.Controllers
         public bool ArduinoStatus { get; set; }
 
         public string SystemEvent { get; set; }
+        
+        public string G1000NxiFlightPlan { get; set; }
     }
 
     public class SimConnectPostData
