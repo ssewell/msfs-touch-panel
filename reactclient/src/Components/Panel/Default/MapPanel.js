@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100%',
         border: '1px solid ' + theme.palette.divider,
-        borderRadius: theme.spacing(1),
+        borderRadius: theme.spacing(1)
     },
 }));
 

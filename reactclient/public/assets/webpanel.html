@@ -2,10 +2,21 @@
 <html id="root" class='animationsEnabled'>
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type='text/javascript' src="/assets/shared/module.js"></script>
         <style>
-            body { background-color: black; fill: white}
+            body { background-color: black; fill: white; }
+
+            /* A32nx MCDU override */
+            a320-neo-cdu-main-display { width: 100% !important; aspect-ratio: 0.9 }
+            a320-neo-cdu-main-display #Mainframe { font-size: calc(40px + 5.3vw) !important }
+            a320-neo-cdu-main-display #header { margin-top: 2.5% !important; margin-bottom: 0 !important }
+            a320-neo-cdu-main-display #title-left { top: 2.5% !important }
+            a320-neo-cdu-main-display #page-info { top: 2.5% !important }
+            a320-neo-cdu-main-display .line-left { left: 5% !important }
+            a320-neo-cdu-main-display .line-right { right: 5% !important }
+            a320-neo-cdu-main-display .line { height: 7% !important }
         </style>
         <script>
             const urlSearchParams = new URLSearchParams(window.location.search);
@@ -22,5 +33,7 @@
             }
         </script>
     </head>
-    <body id="container" class="contentLoaded" quality="ultra" gamestate="ingame" gamepad="false" style='overflow:clip'></body>
+    <body id="container" class="contentLoaded" quality="ultra" gamestate="ingame" gamepad="false" style='overflow:clip'>
+        <div id='garbageBin' style='display: none'></div>
+    </body>
 </html>

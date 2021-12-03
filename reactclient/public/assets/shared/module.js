@@ -1,14 +1,14 @@
-var BUGGY_NODES_CLASSES = [];
-var BUGGY_NODES_IDS = [];
-var buggyNodes = [];
-var replaceMapNode = [];
-var htmluiRoot; 
+let BUGGY_NODES_CLASSES = [];
+let BUGGY_NODES_IDS = [];
+let buggyNodes = [];
+let replaceMapNode = [];
+let htmluiRoot; 
 
-var targetedPlane, socket, socketRetryInterval, garbageBin;
-var divElement, textElement, spanElement, placeholderElement, tspanElement;
+let targetedPlane, targetPanel, socket, socketRetryInterval;
 
 const start = (planeType, panel) => {
     targetedPlane = planeType.toLowerCase();
+    targetedPanel = panel.toLowerCase();
     socketRetryInterval = setInterval(() => {
         connect(panel);
     }, 2000);
@@ -18,20 +18,6 @@ const start = (planeType, panel) => {
     // setup MSFS html_ui root folder path
     htmluiRoot = '/assets/' + planeType;
 
-    // setup element templates
-    divElement = document.createElement('div');
-    textElement = document.createElement('text');
-    spanElement = document.createElement('span');
-    placeholderElement = document.createElement('place-holder');
-    tspanElement = document.createElement('tspan');
-    
-    // create garbage bin
-    window.onload = () => {
-        garbageBin = document.createElement('div');
-        garbageBin.style.display = 'none'; //Make sure it is not displayed
-        document.body.appendChild(garbageBin);
-    }
-
     // setup buggy nodes for each plane type
     switch(planeType.toLowerCase()){
         case 'g1000nxi':
@@ -39,15 +25,26 @@ const start = (planeType, panel) => {
             BUGGY_NODES_IDS = [];
             break;
         case 'fbwa32nx':
-            BUGGY_NODES_CLASSES = ['Title', 'Action', 'Completed', 'Value'];
-            BUGGY_NODES_IDS = ['CurrentValue', 'Value', 'SATValue', 'TATValue', 'ISAValue'];
+            //BUGGY_NODES_CLASSES = ['Title', 'Action', 'Completed'];
+            BUGGY_NODES_IDS = ['CurrentValue', 'Value', 'SATValue', 'TATValue', 'ISAValue' ];
             break;
         case 'cj4':
             BUGGY_NODES_CLASSES = [];
             BUGGY_NODES_IDS = [];
             break;
     }
+
+    setInterval(() => {
+        let garbageBin = document.getElementById('garbageBin');
+        console.log('garbageBin length..............................................' + garbageBin.children.length);
+        if(garbageBin.children.length > 0)
+        {
+            for(let i = garbageBin.children.length - 1; i >= 0; i--)
+                garbageBin.removeChild(garbageBin.children[i]);
+        }
+    }, 5000);
 }
+
 
 const connect = (panel) => {
     console.log('Connecting to plane...')
@@ -84,18 +81,18 @@ const connect = (panel) => {
 }
 
 const resizePanel = () => {
-    var body = document.getElementById('container');
-    var vcockpit = document.getElementById('panel');
+    let body = document.getElementById('container');
+    let vcockpit = document.getElementById('panel');
 
     if(vcockpit !== null) {
-        var pageWidth = parseInt(vcockpit.childNodes[0].style.width, 10);
-        var pageHeight = parseInt(vcockpit.childNodes[0].style.height, 10);
+        let pageWidth = parseInt(vcockpit.childNodes[0].style.width, 10);
+        let pageHeight = parseInt(vcockpit.childNodes[0].style.height, 10);
 
-        var zoomLevelWidth = (parseInt(window.innerWidth) / pageWidth * 1.0 - 1) * 100;
-        var zoomLevelHeight = (parseInt(window.innerHeight) / pageHeight * 1.0 - 1) * 100;
-        var zoomLevel = zoomLevelWidth < zoomLevelHeight ? zoomLevelWidth : zoomLevelHeight;
+        let zoomLevelWidth = (parseInt(window.innerWidth) / pageWidth * 1.0 - 1) * 100;
+        let zoomLevelHeight = (parseInt(window.innerHeight) / pageHeight * 1.0 - 1) * 100;
+        let zoomLevel = zoomLevelWidth < zoomLevelHeight ? zoomLevelWidth : zoomLevelHeight;
 
-        var zoom = (100 + zoomLevel).toFixed(2) + '%';
+        let zoom = (100 + zoomLevel).toFixed(2) + '%';
         body.style.zoom = zoom;
     }
 
@@ -103,20 +100,18 @@ const resizePanel = () => {
 }
 
 const socketReceivedMessage = (msg) => {
-    var data = JSON.parse(msg.data);
+    let data = JSON.parse(msg.data);
 
     if (data.result !== undefined) 
     {
         if (data.id >= 10) {
-            var element = document.getElementsByName(data.id)[0];
-            if(element !== undefined)
-                setElementAttributes(element, data.result.attributes);
+            setElementAttributes(getElementsByName(data.id), data.result.attributes);
         }
         else if (data.id === 1) {
             createRootElement(data.result);
         }
         else if (data.id === 2) {
-            var rootNodeId = data.result.nodeId;
+            let rootNodeId = data.result.nodeId;
             createDocument(rootNodeId);
         }
     }
@@ -136,46 +131,44 @@ const socketReceivedMessage = (msg) => {
                 forceRerender(data.nodeId);  // force rerender
                 break;
             case 'DOM.childNodeInserted':
-                if(!buggyNodes.includes(data.params.parentNodeId))
+                if(buggyNodes.find(x => x == data.params.parentNodeId) === undefined)
                 {
                     handleInsertNode(data.params);
                     forceRerender(data.params.parentNodeId);  // force rerender
                 }
                 else
                 {
-                    var element = document.getElementsByName(data.params.parentNodeId)[0];
-                    buggyNodes.push(data.params.parentNodeId);
-                    //buggyNodes.push(data.params.node.nodeId);
-
-                    if (element.innerHTML !== sanitize(data.params.node.nodeValue))
+                    let element = getElementsByName(data.params.parentNodeId);
+                    if(buggyNodes.indexOf(data.params.parentNodeId) === -1)
                     {
-                        element.innerHTML = sanitize(data.params.node.nodeValue);
-                        forceRerender(data.params.parentNodeId);  // force rerender
+                        buggyNodes.push(data.params.parentNodeId);
+                        //buggyNodes.push(data.params.node.nodeId);
+                    }
+
+                    if (element.textContent !== data.params.node.nodeValue)
+                    {
+                        element.textContent = data.params.node.nodeValue;
                     }
                 }
                 break;
             case 'DOM.childNodeRemoved':
-                if(!buggyNodes.includes(data.params.nodeId))
+                if(buggyNodes.find(x => x == data.params.parentNodeId) === undefined)
                     removeElement(data.params);
                 break;
             case 'DOM.characterDataModified':
                 handleCharacterDataModified(data.params);
                 break;
             case 'DOM.setChildNodes':
-                var parent = document.getElementsByName(data.params.parentId)[0];
-
-                if(data.params.parentId === Number(document.head.getAttribute('name')))
-                {
-                    data.params.nodes = data.params.nodes.filter(childNode => childNode.localName !== 'script' && childNode.localName !== 'title' && childNode.localName !== 'meta');
-                }
+                let parent = getElementsByName(data.params.parentId);
+                data.params.nodes = data.params.nodes.filter(childNode => childNode.localName !== 'script' && childNode.localName !== 'title' && childNode.localName !== 'meta');
     
                 if (parent !== undefined) {
                     // only get first child of body tag
                     if(data.params.parentId === Number(document.body.getAttribute('name')))
-                        data.params.nodes.length = 1
+                        data.params.nodes.length = 1;
                     
                     data.params.nodes.forEach((node) => {
-                        parent.append(createElement(node, parent.tagName));
+                        parent.appendChild(createElement(node, parent.tagName));
                     });
     
                     forceRerender(data.params.parentId);  // force rerender
@@ -186,63 +179,41 @@ const socketReceivedMessage = (msg) => {
                 break;
             case 'DOM.pseudoElementAdded':   
             case 'DOM.pseudoElementRemoved':
+                break;
             default:
                 console.log(data);
         }
     }
-    else{
-        console.log(data);
-    }
 }
 
-const forceRerender = (elementName, delay = 50) => {
+const forceRerender = (elementName) => {
     if(elementName === undefined) return;
 
-    //setTimeout(() => {
-        var element = document.getElementsByName(elementName)[0];
-        if(element !== undefined)
-            element.innerHTML = element.innerHTML;
-    //}, delay);
-}
-
-const instantiateElement = (tagName) => {
-    switch(tagName)
-    {
-        case 'div':
-            return divElement.cloneNode(true);
-        case 'text':
-            return textElement.cloneNode(true);
-        case 'span':
-            return spanElement.cloneNode(true);
-        case 'tspan':
-            return tspanElement.cloneNode(true);
-        case 'place-holder':
-            return placeholderElement.cloneNode(true);
-        default:
-            return document.createElement(tagName);
-    }
+    let element = getElementsByName(elementName);
+    if(element !== undefined)
+        element.innerHTML += '';
 }
 
 const setupBuggyNodes = () => {
     // capture buggy nodes by html class names
     BUGGY_NODES_CLASSES.forEach(cls => {
-        var elements = document.querySelectorAll('.' + cls);
+        let elements = document.querySelectorAll('.' + cls);
 
         elements.forEach(element => {
-            var elementName = element.getAttribute('name');
+            let elementName = element.getAttribute('name');
             buggyNodes.push(Number(elementName));
 
             element.childNodes.forEach(c => {
                 if(c.getAttribute !== undefined)
                 {
-                    var childElementName =  c.getAttribute('name');
+                    let childElementName =  c.getAttribute('name');
                     if(childElementName !== undefined)
                         buggyNodes.push(Number(childElementName));
 
                     c.childNodes.forEach(gc => {
                         if(gc.getAttribute !== undefined)
                         {
-                            var gcElementName =  gc.getAttribute('name');
+                            let gcElementName =  gc.getAttribute('name');
                             if(gcElementName !== undefined)
                                 buggyNodes.push(Number(gcElementName));
                         }
@@ -254,23 +225,23 @@ const setupBuggyNodes = () => {
 
     // capture buggy nodes by html element id
     BUGGY_NODES_IDS.forEach(id => {
-        var elements = document.querySelectorAll('#' + id);
+        let elements = document.querySelectorAll('#' + id);
 
         elements.forEach(element => {
-            var elementName = element.getAttribute('name');
+            let elementName = element.getAttribute('name');
             buggyNodes.push(Number(elementName));
 
             element.childNodes.forEach(c => {
                 if(c.getAttribute !== undefined)
                 {
-                    var childElementName =  c.getAttribute('name');
+                    let childElementName =  c.getAttribute('name');
                     if(childElementName !== undefined)
                         buggyNodes.push(Number(childElementName));
 
                     c.childNodes.forEach(gc => {
                         if(gc.getAttribute !== undefined)
                         {
-                            var gcElementName =  gc.getAttribute('name');
+                            let gcElementName =  gc.getAttribute('name');
                             if(gcElementName !== undefined)
                                 buggyNodes.push(Number(gcElementName));
                         }
@@ -294,7 +265,7 @@ const createDocument = (nodeId) => {
         resizePanel();
 
         // fix g1000nxi scolling highlighted item into view causes entire page to move
-        var mainFrame = document.getElementById('Mainframe');
+        let mainFrame = document.getElementById('Mainframe');
         if(mainFrame !== null) 
             mainFrame.setAttribute('style', 'overflow: clip');
 
@@ -310,8 +281,8 @@ const createDocument = (nodeId) => {
 }
 
 const createRootElement = (data) => {
-    var htmlNode = data.root.children[1];
-    var htmlElement = document.getElementsByTagName('html')[0]; 
+    let htmlNode = data.root.children[1];
+    let htmlElement = $('html')[0]; 
     setElementAttributes(htmlElement, htmlNode.attributes);
         
     htmlNode.children.forEach(childNode =>
@@ -330,31 +301,28 @@ const createRootElement = (data) => {
 const createElement = (node, parentTag) => {
     if(node.nodeType === 3)
     {
+        if(targetedPlane === 'fbwa32nx' && targetedPanel === 'eicas_1') // one off for FBW A32NX and EICAS_1
+        {
+            return node.nodeValue;
+        }
+
         if(parentTag.toLowerCase() === 'text' || parentTag.toLowerCase() === 'tspan')
         {
             if(targetedPlane === 'fbwa32nx' || targetedPlane === 'g1000nxi')        // one off for FBW A32NX and G1000NXi
             {
-                var el = instantiateElement('tspan');
+                let el = document.createElement('tspan');
                 el.setAttribute('name', node.nodeId);
-                el.innerHTML = sanitize(node.nodeValue);
+                el.textContent = node.nodeValue;
                 return el;
             }
-            else
-            {
-                return node.nodeValue;
-            }
-        }
-        if(parentTag.toLowerCase() === 'tspan')
-        {
+            
             return node.nodeValue;
         }
-        else
-        {
-            var el = instantiateElement('place-holder');
-            el.setAttribute('name', node.nodeId);
-            el.innerHTML = sanitize(node.nodeValue);
-            return el;
-        }
+
+        let el = document.createElement('place-holder');
+        el.setAttribute('name', node.nodeId);
+        el.textContent = node.nodeValue;
+        return el;
     }
 
     if(node.nodeType === 1)
@@ -364,14 +332,14 @@ const createElement = (node, parentTag) => {
             socket.send(JSON.stringify({id: node.nodeId, method: "DOM.requestChildNodes", params: { nodeId: node.nodeId, depth: -1 }}));
         }
 
-        var element = document.createElement(node.localName);
+        let element = document.createElement(node.localName);
         element.setAttribute('name', node.nodeId);
         setElementAttributes(element, node.attributes);
 
         // replace bing map node with built-in map app
         if(replaceMapNode.includes(node.nodeId))
         {
-            var mapElement = document.createElement('iframe');
+            let mapElement = document.createElement('iframe');
             mapElement.setAttribute('src',  `http://${window.location.hostname}:${window.location.port}/mappanel`);
             mapElement.setAttribute('style', 'width:100%; height: calc(100% - 58px); margin-top: 58px');
             mapElement.setAttribute('frameborder', '0');
@@ -380,21 +348,28 @@ const createElement = (node, parentTag) => {
             return element;
         }
         
-        if(node.children !== undefined &&  node.children.length > 0)
+        if(node.children !== undefined && node.children.length > 0)
         {
+            node.children = node.children.filter(n => n.localName !== 'script');
             node.children.forEach(childNode => {
-
-                var newElement = createElement(childNode, node.localName)
+                let newElement = createElement(childNode, node.localName)
 
                 if(typeof newElement === 'string')
-                    element.innerHTML = sanitize(newElement);
+                    element.textContent = newElement;
                 else
                     element.append(newElement);
+            
             });
         }
 
-        socket.send(JSON.stringify({id: node.nodeId, method: 'DOM.getAttributes', params: {nodeId: node.nodeId }}));
-        return element;
+        if(targetedPlane === 'fbwa32nx' && targetedPanel === 'eicas_1')     // one off for FBW A32NX and EICAS_1
+        {
+            return element;
+        }
+        else{
+            socket.send(JSON.stringify({id: node.nodeId, method: 'DOM.getAttributes', params: {nodeId: node.nodeId }}));
+            return element;
+        }
     }
 
     if (node.nodeType === 8)
@@ -405,33 +380,84 @@ const createElement = (node, parentTag) => {
     return null;
 }
 
-const removeElement = (data) => {
-    var el = document.getElementsByName(data.nodeId)[0];
-    if(el !== undefined)
-    {
-        //Move the element to the garbage bin element
-        garbageBin.appendChild(el);
-        garbageBin.innerHTML = "";
-    } 
+const modifiedElement  = (node, parentTag) => {
+
 }
+
+const removeElement = (data) => {
+    let node = getElementsByName(data.nodeId);
+    let parentNode = getElementsByName(data.parentNodeId);
+    
+    if(node !== undefined)
+    {
+        if(targetedPlane === 'fbwa32nx' && targetedPanel === 'cdu')     // one off for FBWA32NX CDU. Constant adding and removing of nodes cause flickering. This fix has some performance penalty.
+        {
+            node.setAttribute('deleted', 'true');
+            node.style.display = 'none';
+            moveNodetoGarbageBin(data.parentNodeId);        
+        }
+        else
+        {
+            parentNode.removeChild(node);
+        }
+    }
+
+    delete node;
+}
+
+const moveNodetoGarbageBin = (nodeId) => {
+
+    let deletedNodes = $('[name=' + nodeId + ']').find('[deleted=true]');
+    for(let i = 0; i < deletedNodes.length; i++)
+    {
+        let childNodeId = deletedNodes[i].getAttribute('name');
+
+        if(IsAllChildrenDeleted(childNodeId))
+        {
+            let deletedNode = getElementsByName(childNodeId);
+            deletedNode.removeAttribute('deleted');
+            let garbageBin = document.getElementById('garbageBin');
+            garbageBin.appendChild(deletedNode);
+        }
+    }
+}
+
+const IsAllChildrenDeleted = (nodeId) => {
+    let node = $('[name=' + nodeId + ']')[0];
+    if(node.children.length === 0)
+        return true;
+    
+    for(let i = 0; i < node.children.length; i++)
+    {
+        console.log(node.children[i].getAttribute('name'));
+        if(!IsAllChildrenDeleted(node.children[i].getAttribute('name')))
+        {
+            console.log(node.children[i].getAttribute('name') + ':false');
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
 const setElementAttributes = (element, attributes) => {
     if(element !== undefined && attributes !== undefined)
     {
-        var i = 0;
+        let i = 0;
         while (i < attributes.length) {
-            var attribute = attributes[i].toLowerCase();
-            var value = attributes[i + 1];
+            let attribute = attributes[i].toLowerCase();
+            let value = attributes[i + 1];
             switch(attribute)
             {
                 case 'class':   
-                        // scoll highlighted item into view
+                    // scoll highlighted item into view
                     if(value.includes('highlight-select'))
                     {
                         element.scrollIntoView({behavior: 'smooth', block: 'nearest', inline: 'nearest'});
 
                         // fix ipad safari screen shift when scrollIntoView
-                        var mainframe = document.getElementById('Mainframe');
+                        let mainframe = document.getElementById('Mainframe');
                         if(mainframe !== null)
                             setTimeout(() => mainframe.scrollIntoView({block: 'start', inline: 'end'}), 1000);
                     }
@@ -463,34 +489,58 @@ const setElementAttributes = (element, attributes) => {
                 default:
             }
 
-            element.setAttribute(attribute, value);
-
+            if(element.getAttribute(attribute) !== value)
+                element.setAttribute(attribute, value);
+            
             i += 2;
         }
     }
 }
 
-const sanitize = (text) => {
-    return text.replace('<','&lt;');
-}
-
 const handleInsertNode = (data) => {
-    var parent = document.getElementsByName(data.parentNodeId)[0];
+    let parent = getElementsByName(data.parentNodeId);
 
     if (data.node.nodeType === 3)
     {
-        var newElement = createElement(data.node, parent.tagName);
-        if(typeof newElement === 'string')
-            parent.innerHTML = sanitize(newElement);
+       if(data.node.nodeValue.match(/{(.*?)}/)) return;   // ignore messed up data issue in fbwA32nx CDU  (eg. {cyan}113{end}{small}   {end} F={green}131{end})
+
+        let newElement = createElement(data.node, parent.tagName);
+        if(typeof newElement === 'string') {
+            if(parent.textContent !== newElement)
+                parent.textContent = newElement;
+
+            // remove element after insert to prevent flickering
+            // let reusedElement = $('[name=' + data.parentNodeId + ']').find('[deleted=true]').next();
+            // let garbageBin = document.getElementById('garbageBin');
+            // garbageBin.appendChild(reusedElement[0]);
+        }
         else
-            parent.prepend(newElement);
+        {
+            parent.append(newElement);
+        }
+
+
     }
     else if (data.node.nodeType === 1) {
-        var newElement = createElement(data.node, parent.tagName);
-        if(typeof newElement === 'string')
-            parent.innerHTML = sanitize(newElement);
+        let newElement = createElement(data.node, parent.tagName);
+        if(typeof newElement === 'string'){
+            if(parent.textContent !== newElement)
+                parent.textContent = newElement;
+        }
         else
             parent.append(newElement);
+    }
+}
+
+handleModifiedNode = (data) => {
+    let parent = getElementsByName(data.parentNodeId);
+
+    if (data.node.nodeType === 3)
+    {
+        if(data.node.nodeValue.match(/{(.*?)}/)) return;   // ignore messed up data issue in fbwA32nx CDU  (eg. {cyan}113{end}{small}   {end} F={green}131{end})
+
+        let reusedElement = $('[deleted=true]').next();
+
     }
 }
 
@@ -501,31 +551,36 @@ const handleInlineStyleInvalidated = (data) => {
 }
 
 const handleAttributeModified = (data) => {
-    var node = document.getElementsByName(data.nodeId)[0];
+    let node = getElementsByName(data.nodeId);
     
     if(node !== undefined)
         setElementAttributes(node, [data.name, data.value]);
 }
 
 const handleAttributeRemoved = (data) => {
-    var node = document.getElementsByName(data.nodeId)[0];
+    let node = getElementsByName(data.nodeId);
     
     if(node !== undefined)
         node.removeAttribute(data.name);
 }
 
 const handleCharacterDataModified = (data) => {
-    var element = document.getElementsByName(data.nodeId)[0];
+    let element = getElementsByName(data.nodeId);
 
-    if(element !== undefined && element.innerHTML !== sanitize(data.characterData))
-        element.innerHTML = sanitize(data.characterData);
+    if(element !== undefined && element.textContent !== data.characterData)
+        element.textContent = data.characterData;
 }
 
 const handleChildNodeCountUpdated = (data) => {
-    var msg = {
+    let msg = {
         id: 1,
         method: "DOM.requestChildNodes",
         params: { nodeId: data.nodeId, depth: -1 }
     }
     socket.send(JSON.stringify(msg));
+}
+
+const getElementsByName = (nodeId) => {
+
+    return $('[name=' + nodeId + ']')[0];
 }

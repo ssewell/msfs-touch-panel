@@ -75,6 +75,10 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.txtServerIP = new DarkUI.Controls.DarkTextBox();
             this.txtClientLogMessages = new DarkUI.Controls.DarkTextBox();
             this.txtServerLogMessages = new DarkUI.Controls.DarkTextBox();
+            this.a32NXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_framepanel_fbwa32nx_cdu = new System.Windows.Forms.ToolStripMenuItem();
+            this.a32NXToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_buttonpanel_fbwa32nx_cdu = new System.Windows.Forms.ToolStripMenuItem();
             this.darkMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -225,7 +229,8 @@ namespace MSFSTouchPanel.TouchPanelHost
             // 
             this.framePanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.framePanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.g1000NXiToolStripMenuItem3});
+            this.g1000NXiToolStripMenuItem3,
+            this.a32NXToolStripMenuItem});
             this.framePanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.framePanelToolStripMenuItem.Name = "framePanelToolStripMenuItem";
             this.framePanelToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
@@ -239,7 +244,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_framepanel_g1000nxi_mfd});
             this.g1000NXiToolStripMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.g1000NXiToolStripMenuItem3.Name = "g1000NXiToolStripMenuItem3";
-            this.g1000NXiToolStripMenuItem3.Size = new System.Drawing.Size(144, 24);
+            this.g1000NXiToolStripMenuItem3.Size = new System.Drawing.Size(180, 24);
             this.g1000NXiToolStripMenuItem3.Text = "G1000NXi";
             // 
             // menu_framepanel_g1000nxi_pfd
@@ -247,7 +252,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_framepanel_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menu_framepanel_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menu_framepanel_g1000nxi_pfd.Name = "menu_framepanel_g1000nxi_pfd";
-            this.menu_framepanel_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_framepanel_g1000nxi_pfd.Size = new System.Drawing.Size(180, 24);
             this.menu_framepanel_g1000nxi_pfd.Text = "PFD";
             // 
             // menu_framepanel_g1000nxi_mfd
@@ -255,14 +260,15 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_framepanel_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menu_framepanel_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menu_framepanel_g1000nxi_mfd.Name = "menu_framepanel_g1000nxi_mfd";
-            this.menu_framepanel_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_framepanel_g1000nxi_mfd.Size = new System.Drawing.Size(180, 24);
             this.menu_framepanel_g1000nxi_mfd.Text = "MFD";
             // 
             // buttonsWebPanelToolStripMenuItem
             // 
             this.buttonsWebPanelToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.buttonsWebPanelToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.g1000NXiToolStripMenuItem2});
+            this.g1000NXiToolStripMenuItem2,
+            this.a32NXToolStripMenuItem1});
             this.buttonsWebPanelToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.buttonsWebPanelToolStripMenuItem.Name = "buttonsWebPanelToolStripMenuItem";
             this.buttonsWebPanelToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
@@ -276,7 +282,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_buttonpanel_g1000nxi_mfd});
             this.g1000NXiToolStripMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.g1000NXiToolStripMenuItem2.Name = "g1000NXiToolStripMenuItem2";
-            this.g1000NXiToolStripMenuItem2.Size = new System.Drawing.Size(144, 24);
+            this.g1000NXiToolStripMenuItem2.Size = new System.Drawing.Size(158, 24);
             this.g1000NXiToolStripMenuItem2.Text = "G1000NXi";
             // 
             // menu_buttonpanel_g1000nxi_pfd
@@ -284,7 +290,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_buttonpanel_g1000nxi_pfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menu_buttonpanel_g1000nxi_pfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menu_buttonpanel_g1000nxi_pfd.Name = "menu_buttonpanel_g1000nxi_pfd";
-            this.menu_buttonpanel_g1000nxi_pfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanel_g1000nxi_pfd.Size = new System.Drawing.Size(180, 24);
             this.menu_buttonpanel_g1000nxi_pfd.Text = "PFD";
             // 
             // menu_buttonpanel_g1000nxi_mfd
@@ -292,7 +298,7 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.menu_buttonpanel_g1000nxi_mfd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
             this.menu_buttonpanel_g1000nxi_mfd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.menu_buttonpanel_g1000nxi_mfd.Name = "menu_buttonpanel_g1000nxi_mfd";
-            this.menu_buttonpanel_g1000nxi_mfd.Size = new System.Drawing.Size(109, 24);
+            this.menu_buttonpanel_g1000nxi_mfd.Size = new System.Drawing.Size(180, 24);
             this.menu_buttonpanel_g1000nxi_mfd.Text = "MFD";
             // 
             // webPanelToolStripMenuItem
@@ -507,6 +513,42 @@ namespace MSFSTouchPanel.TouchPanelHost
             this.txtServerLogMessages.Size = new System.Drawing.Size(1091, 180);
             this.txtServerLogMessages.TabIndex = 20;
             // 
+            // a32NXToolStripMenuItem
+            // 
+            this.a32NXToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.a32NXToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_framepanel_fbwa32nx_cdu});
+            this.a32NXToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.a32NXToolStripMenuItem.Name = "a32NXToolStripMenuItem";
+            this.a32NXToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.a32NXToolStripMenuItem.Text = "FBW A32NX";
+            // 
+            // menu_framepanel_fbwa32nx_cdu
+            // 
+            this.menu_framepanel_fbwa32nx_cdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_framepanel_fbwa32nx_cdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_framepanel_fbwa32nx_cdu.Name = "menu_framepanel_fbwa32nx_cdu";
+            this.menu_framepanel_fbwa32nx_cdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_framepanel_fbwa32nx_cdu.Text = "MCDU";
+            // 
+            // a32NXToolStripMenuItem1
+            // 
+            this.a32NXToolStripMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.a32NXToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_buttonpanel_fbwa32nx_cdu});
+            this.a32NXToolStripMenuItem1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.a32NXToolStripMenuItem1.Name = "a32NXToolStripMenuItem1";
+            this.a32NXToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
+            this.a32NXToolStripMenuItem1.Text = "FBW A32NX";
+            // 
+            // menu_buttonpanel_fbwa32nx_cdu
+            // 
+            this.menu_buttonpanel_fbwa32nx_cdu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(63)))), ((int)(((byte)(65)))));
+            this.menu_buttonpanel_fbwa32nx_cdu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.menu_buttonpanel_fbwa32nx_cdu.Name = "menu_buttonpanel_fbwa32nx_cdu";
+            this.menu_buttonpanel_fbwa32nx_cdu.Size = new System.Drawing.Size(180, 24);
+            this.menu_buttonpanel_fbwa32nx_cdu.Text = "MCDU";
+            // 
             // StartupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -584,5 +626,9 @@ namespace MSFSTouchPanel.TouchPanelHost
         private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_isis;
         private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_fcu;
         private System.Windows.Forms.ToolStripMenuItem menu_webpanel_fbwa32nx_rmp;
+        private System.Windows.Forms.ToolStripMenuItem a32NXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menu_framepanel_fbwa32nx_cdu;
+        private System.Windows.Forms.ToolStripMenuItem a32NXToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menu_buttonpanel_fbwa32nx_cdu;
     }
 }

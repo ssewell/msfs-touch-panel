@@ -41,8 +41,12 @@ namespace MSFSTouchPanel.TouchPanelHost
 
             menu_buttonpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
             menu_buttonpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+            menu_buttonpanel_fbwa32nx_cdu.Click += experimentalMenuItem_Clicked;
+
             menu_framepanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;
             menu_framepanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
+            menu_framepanel_fbwa32nx_cdu.Click += experimentalMenuItem_Clicked;
+
 
             menu_webpanel_g1000nxi_mfd.Click += experimentalMenuItem_Clicked;
             menu_webpanel_g1000nxi_pfd.Click += experimentalMenuItem_Clicked;

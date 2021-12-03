@@ -1,14 +1,15 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useWindowDimensions } from './Components/Util/hooks';
 import makeStyles from '@mui/styles/makeStyles';
 import Container from '@mui/material/Container';
 import ApplicationBar from './Experimental/ApplicationBar';
-import G1000NXiPanel from './Experimental/g1000NXiPanel';
 import TelemetryPanel from './Experimental/TelemetryPanel';
 import MapPanel from './Components/Panel/Default/MapPanel';
+import PopoutPanelContainer from './Experimental/PopoutPanelContainer';
+import { POPOUT_PANEL_INFO } from './Experimental/PopoutPanelInfo';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = props => makeStyles((theme) => ({
     rootFullWidth: {
         [theme.breakpoints.up('sm')]: { fontSize: '12px' },
         [theme.breakpoints.up('md')]: { fontSize: '16px' },
@@ -27,42 +28,45 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 'inherit',
         zIndex: 10000,
     },
-    aspectRatioPanelContainer: {
+    g1000NXiContainerBase: {
         position: 'relative',
-        marginTop: '60px',
-        margin: '0 auto',
-        height: '92vh',
-        width: 'calc(92vh * 1408/914)'
-        //aspectRatio: '1408/914',            // PFD/MFD background image aspect ratio (width/height)
-    },
-    aspectRatioContentMfd: {
-        position: 'relative',
-        overflow: 'hidden',
-        display: 'flex',
-        height: '100%',
-        width: '100%',
-        backgroundColor: 'transparent'
-    },
-    mappanel: {
-        height: '100%',
-        width: '100%',
-        zIndex: 1000,
-        overflow: 'hidden',
+        backgroundColor: 'transparent',
         touchAction: 'none',
+        margin: '3.5em auto 0 auto', 
+    },
+    g1000NXiContainer: {
+        position: 'relative',
+        backgroundColor: 'transparent',
+        touchAction: 'none',
+        margin: '3.5em auto 0 auto', 
+        height: `calc(${props.windowHeight - 1}px - 3.6em)`, 
+        aspectRatio: 1
+    },
+    panelContainer: {
+        position: 'relative',
+        backgroundColor: 'transparent',
+        touchAction: 'none',
+        margin: '2em auto 0 auto', 
+        height: `calc(${props.windowHeight - 1}px - 2em)`,
+        aspectRatio: 1
     },
 }));
 
 const WebPanel = ({experimentalClick}) => {
-    const classes = useStyles();
+    const classes = useStyles(useWindowDimensions())();
     const [ mapOpen, setMapOpen] = useState(false);
-    const { planetype, panel, format = 'buttonpanel' } = useParams();
-
+    const { planetype = 'undefined', panel, format = 'buttonpanel' } = useParams();
+        
     useEffect(() => {
         if(format === 'framepanel')
             document.body.style.backgroundColor = 'transparent';
         else
             document.body.style.backgroundColor = 'black';
     }, []);
+
+    let panelInfo = POPOUT_PANEL_INFO.find(x => x.planetype === planetype && x.panel === panel);
+    if(panelInfo === undefined)
+        panelInfo = { planetype: planetype, panel: panel, width: '100%', height: '100%', panelRatio: 1, definitions: [], styles: props => makeStyles({}) }; 
 
     return (
         <Container className={classes.rootFullWidth}>
@@ -75,16 +79,15 @@ const WebPanel = ({experimentalClick}) => {
                     <TelemetryPanel></TelemetryPanel>
                 }
             </div>
-            {(planetype === undefined || planetype.toLowerCase() === 'g1000nxi') &&
-                 <div className={classes.aspectRatioPanelContainer}>
-                    { mapOpen && 
-                        <div className={classes.mappanel} >
-                            <MapPanel></MapPanel>
-                        </div>
-                    }
-                    <div className={classes.aspectRatioContentMfd} style={{display: !mapOpen ? 'inherit' : 'none'}}>
-                        <G1000NXiPanel panel={panel === undefined ? 'PFD' : panel.toUpperCase()} frameonly={format.toLowerCase() !== 'buttonpanel'}></G1000NXiPanel>
-                    </div>
+            {panelInfo !== undefined && planetype.toLowerCase() === 'g1000nxi' &&
+                <div className={classes.g1000NXiContainer} style={{aspectRatio: String(panelInfo.panelRatio)}}>
+                    { mapOpen && <MapPanel /> }
+                    <PopoutPanelContainer panelInfo={panelInfo} frameonly={format.toLowerCase() !== 'buttonpanel'} />
+                </div>
+            }
+            {planetype.toLowerCase() !== 'g1000nxi' &&
+                <div className={classes.panelContainer} style={{aspectRatio: String(panelInfo.panelRatio)}}>
+                    <PopoutPanelContainer panelInfo={panelInfo} frameonly={format.toLowerCase() !== 'buttonpanel'} />
                 </div>
             }
         </Container>
