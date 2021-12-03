@@ -136,31 +136,35 @@ void loop() {
 		lastButton2Press = millis();
 	}
 
-	// Read joystick
+	// Read joystick (updated for joystick mounted at 90 degree)
 	if(joystick.isReleased())
 	{
 		// left
 		if(joystick.isLeft())
 		{
-			Serial.println("Joystick:LEFT");
+      //Serial.println("Joystick:LEFT");
+			Serial.println("Joystick:UP");
 		}
 
 		// right
 		if(joystick.isRight())
 		{
-			Serial.println("Joystick:RIGHT");
+      //Serial.println("Joystick:RIGHT");
+			Serial.println("Joystick:DOWN");
 		}
 
 		// up
 		if(joystick.isUp())
 		{
-			Serial.println("Joystick:UP");
+      //Serial.println("Joystick:UP");
+			Serial.println("Joystick:RIGHT");
 		}
 
 		// down
 		if(joystick.isDown())
 		{
-			Serial.println("Joystick:DOWN");
+      //Serial.println("Joystick:DOWN");
+			Serial.println("Joystick:LEFT");
 		}
 	}
 
