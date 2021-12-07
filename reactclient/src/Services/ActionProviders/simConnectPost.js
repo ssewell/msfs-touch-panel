@@ -1,4 +1,4 @@
-export const simConnectPost = (action, value, executionCount = 1) => {
+export const simConnectPost = (actionType, action, value, executionCount = 1) => {
     let planeProfile = localStorage.getItem('planeProfile');
 
     if(action === undefined || value === undefined)
@@ -6,7 +6,7 @@ export const simConnectPost = (action, value, executionCount = 1) => {
 
     // ToDo: Check to see if there are any override action
 
-    let data = {action: action.simAction,  actionType: action.type, value: value, executionCount: executionCount, planeProfile: planeProfile };
+    let data = {action: action, actionType: actionType, value: value, executionCount: executionCount, planeProfile: planeProfile };
 
     console.log(data);
 

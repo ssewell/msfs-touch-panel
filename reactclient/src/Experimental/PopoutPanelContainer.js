@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import IconButton from '@mui/material/IconButton';
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -6,8 +6,7 @@ const useStyles = props => makeStyles((theme) => ({
     root: {
         position: 'relative',
         width: '100%',
-        height: '100%',
-        touchAction: 'none',
+        height: '100%'
     },
     buttonOverlay:
     {
@@ -18,7 +17,7 @@ const useStyles = props => makeStyles((theme) => ({
         backgroundSize: '100% 100%',
         width: '100%',
         height: '100%',
-        touchAction: 'none'
+        zIndex: 1000
     },
     iframe: {
         width: '100%',
@@ -79,7 +78,7 @@ const PopoutPanelContainer = ({panelInfo, frameonly}) => {
         setActiveButton(button);
     }
 
-    return (
+    return useMemo(() => (
         <div className={sharedClasses.root}>
             { !frameonly && 
                 <div className={panelClasses.iframePanel}>
@@ -96,7 +95,7 @@ const PopoutPanelContainer = ({panelInfo, frameonly}) => {
                 })}
             </div>
         </div>
-    );
+    ), [sharedClasses, panelClasses]);
 }
 
 export default PopoutPanelContainer;

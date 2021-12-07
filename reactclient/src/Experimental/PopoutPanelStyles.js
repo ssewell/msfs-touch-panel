@@ -8,7 +8,8 @@ export const G1000NXI_STYLES = props => makeStyles({
         width:  `calc(100% * 1034 / ${props.width})`,
         aspectRatio: `${props.iframeRatio}`,
         border: '0',
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        zIndex: 1001        // allows iframe to response to touch over button overlay
     },
     buttonBase: {
         position: 'absolute',
@@ -46,6 +47,7 @@ export const FBWA32NX_CDU_STYLES = props => makeStyles({
         aspectRatio: `${props.iframeRatio}`,
         border: '0',
         backgroundColor: 'black',
+        zIndex: 999
     },
     squareButtonBase: {
         position: 'absolute',

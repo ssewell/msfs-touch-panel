@@ -1,107 +1,111 @@
 import { simConnectPost } from './simConnectPost';
-import { simConnectActionType } from './simConnectActionType';
+
+const ACTION_TYPE = {
+    Shared: 'Shared',
+    Custom: 'Custom',
+    HVar: 'HVar',
+    None: 'None'
+}
 
 export const simActions = {
     ATC: {
-        select: (index) => simConnectPost(simConnectActionType.Shared['ATC_MENU_' + index], 1)
+        select: (index) => simConnectPost(ACTION_TYPE.Shared, 'ATC_MENU_' + index, 1)
     },
 
     Autopilot: {
-        apMaster: () => simConnectPost(simConnectActionType.Shared.AP_MASTER, 1),
-        flightDirector: () => simConnectPost(simConnectActionType.Shared.AP_FLIGHT_DIRECTOR, 1),
-        cdi: () => simConnectPost(simConnectActionType.Shared.AP_CDI, 1),
-        nav: () => simConnectPost(simConnectActionType.Shared.AP_NAV, 1),
-        yawDamper: () => simConnectPost(simConnectActionType.Shared.AP_YAW_DAMPER, 1),
-        autoThrottle: () => simConnectPost(simConnectActionType.Shared.AP_AUTO_THROTTLE, 1),
-        approach: () => simConnectPost(simConnectActionType.Shared.AP_APPROACH, 1),
-        backCourse: () => simConnectPost(simConnectActionType.Shared.AP_BACK_COURSE, 1),
-        vnav: () => simConnectPost(simConnectActionType.NO_ACTION, 1),
-        leveler: () => simConnectPost(simConnectActionType.Shared.AP_WING_LEVELER, 1),
+        apMaster: () => simConnectPost(ACTION_TYPE.Shared, 'AP_MASTER', 1),
+        flightDirector: () => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_FLIGHT_DIRECTOR', 1),
+        cdi: () => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_GPS_DRIVES_NAV1', 1),
+        nav: () => simConnectPost(ACTION_TYPE.Shared, 'AP_NAV1_HOLD', 1),
+        yawDamper: () => simConnectPost(ACTION_TYPE.Shared, 'YAW_DAMPER_TOGGLE', 1),
+        autoThrottle: () => simConnectPost(ACTION_TYPE.Shared, 'AUTO_THROTTLE_ARM', 1),
+        approach: () => simConnectPost(ACTION_TYPE.Shared, 'AP_APR_HOLD', 1),
+        backCourse: () => simConnectPost(ACTION_TYPE.Shared, 'AP_BC_HOLD', 1),
+        vnav: () => simConnectPost(ACTION_TYPE.None, 'NO_ACTION', 1),
+        leveler: () => simConnectPost(ACTION_TYPE.Shared, 'AP_WING_LEVELER', 1),
 
         Altitude: {
-            hold: () => simConnectPost(simConnectActionType.Shared.AP_ALTITUDE_HOLD, 1),
-            select: () => simConnectPost(simConnectActionType.Shared.AP_ALTITUDE_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.AP_ALTITUDE_SET, value),
-            sync: (value) => simConnectPost(simConnectActionType.Shared.AP_ALTITUDE_SYNC, value),
+            hold: () => simConnectPost(ACTION_TYPE.Shared, 'AP_PANEL_ALTITUDE_HOLD', 1),
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'ALTITUDE_BUG_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'AP_ALT_VAR_SET_ENGLISH', value),
+            sync: (value) => simConnectPost(ACTION_TYPE.Shared, 'AP_ALT_SYNC', value),
         },
         Heading: {
-            hold: () => simConnectPost(simConnectActionType.Shared.AP_HEADING_HOLD, 1),
-            select: () => simConnectPost(simConnectActionType.Shared.AP_HEADING_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.AP_HEADING_SET, value),
-            sync: (value) => simConnectPost(simConnectActionType.Shared.AP_HEADING_SYNC, value),
+            hold: () => simConnectPost(ACTION_TYPE.Shared, 'AP_PANEL_HEADING_HOLD', 1),
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'HEADING_BUG_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'HEADING_BUG_SET', value),
+            sync: (value) => simConnectPost(ACTION_TYPE.Shared, 'HEADING_BUG_SYNC', value),
         },
         VS: {
-            hold: () => simConnectPost(simConnectActionType.Shared.AP_VS_HOLD, 1),
-            select: () => simConnectPost(simConnectActionType.Shared.AP_VS_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.AP_VS_SET, value),
-            increase: () => simConnectPost(simConnectActionType.Shared.AP_VS_VAR_INC, 1),
-            decrease: () => simConnectPost(simConnectActionType.Shared.AP_VS_VAR_DEC, 1),
+            hold: () => simConnectPost(ACTION_TYPE.Shared, 'AP_VS_HOLD', 1),
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'VSI_BUG_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'AP_VS_VAR_SET_ENGLISH', value),
+            increase: () => simConnectPost(ACTION_TYPE.Shared, 'AP_VS_VAR_INC', 1),
+            decrease: () => simConnectPost(ACTION_TYPE.Shared, 'AP_VS_VAR_DEC', 1),
         },
         FLC: {
-            hold: () => simConnectPost(simConnectActionType.Shared.AP_FLC_HOLD, 1),
-            select: () => simConnectPost(simConnectActionType.Shared.AP_FLC_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.AP_FLC_SET, value),
-            increase: () => simConnectPost(simConnectActionType.Shared.AP_SPD_VAR_INC, 1),
-            decrease: () => simConnectPost(simConnectActionType.Shared.AP_SPD_VAR_DEC, 1),
+            hold: () => simConnectPost(ACTION_TYPE.Shared, 'FLIGHT_LEVEL_CHANGE', 1),
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'AIRSPEED_BUG_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'AP_SPD_VAR_SET', value),
+            increase: () => simConnectPost(ACTION_TYPE.Shared, 'AP_SPD_VAR_INC', 1),
+            decrease: () => simConnectPost(ACTION_TYPE.Shared, 'AP_SPD_VAR_DEC', 1),
         }
     },
 
     Barometer: {
-        select: () => simConnectPost(simConnectActionType.Shared.BAROMETER_SELECT, 1),
-        set: (value) => simConnectPost(simConnectActionType.Shared.BAROMETER_SET, value)
+        select: () => simConnectPost(ACTION_TYPE.Custom, 'BAROMETER_SELECT', 1),
+        set: (value) => simConnectPost(ACTION_TYPE.Shared, 'KOHLSMAN_SET', value)
     },
 
     Communication: {
         COM1: {
-            select: () => simConnectPost(simConnectActionType.Shared.COM1_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.COM1_STBY_SET, value),
-            swap: () => simConnectPost(simConnectActionType.Shared.COM1_SWAP, 1),
-            toggle: (value) => simConnectPost(simConnectActionType.Shared.COM1_TRANSMIT_SELECT, value)
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'COM1_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'COM_STBY_RADIO_SET', value),
+            swap: () => simConnectPost(ACTION_TYPE.Shared, 'COM_STBY_RADIO_SWAP', 1),
+            toggle: (value) => simConnectPost(ACTION_TYPE.Shared, 'COM1_TRANSMIT_SELECT', value)
         },
         COM2: {
-            select: () => simConnectPost(simConnectActionType.Shared.COM2_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.COM2_STBY_SET, value),
-            swap: () => simConnectPost(simConnectActionType.Shared.COM2_SWAP, 1),
-            toggle: (value) => simConnectPost(simConnectActionType.Shared.COM2_TRANSMIT_SELECT, value)
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'COM2_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'COM2_STBY_RADIO_SET', value),
+            swap: () => simConnectPost(ACTION_TYPE.Shared, 'COM2_RADIO_SWAP', 1),
+            toggle: (value) => simConnectPost(ACTION_TYPE.Shared, 'COM2_TRANSMIT_SELECT', value)
         }
     },
 
     Electrical: {
         Master: {
-            battery: (value) => simConnectPost(simConnectActionType.Shared.BATTERY_MASTER, value),
-            alternator: (value) => simConnectPost(simConnectActionType.Shared.ALTERNATOR_MASTER, value)
+            battery: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_MASTER_BATTERY' , value),
+            alternator: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_MASTER_ALTERNATOR', value)
         },
         Avionic: {
-            master: (value) => simConnectPost(simConnectActionType.Shared.AVIONICS_MASTER, value),
-            fuelPump: (value) => simConnectPost(simConnectActionType.Shared.FUEL_PUMP, value),
-            pitotHeat: (value) => simConnectPost(simConnectActionType.Shared.PITOT_HEAT, value),
-            deIce: (value) => simConnectPost(simConnectActionType.Shared.DEICE, value)
+            master: (value) => simConnectPost(ACTION_TYPE.Shared, 'AVIONICS_MASTER_SET', value),
+            fuelPump: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_ELECT_FUEL_PUMP', value),
+            pitotHeat: (value) => simConnectPost(ACTION_TYPE.Shared, 'PITOT_HEAT_TOGGLE', value),
+            deIce: (value) => simConnectPost(ACTION_TYPE.Shared, 'ANTI_ICE_SET', value)
         },
         Light: {
-            beacon: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_BEACON, value),
-            landing: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_LANDING, value),
-            taxi: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_TAXI, value),
-            nav: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_NAV, value),
-            strobe: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_STROBE, value),
-            panel: (value) => simConnectPost(simConnectActionType.Shared.LIGHT_PANEL, value)
+            beacon: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_BEACON_LIGHTS' , value),
+            landing: (value) => simConnectPost(ACTION_TYPE.Shared, 'LANDING_LIGHTS_TOGGLE', value),
+            taxi: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_TAXI_LIGHTS', value),
+            nav: (value) => simConnectPost(ACTION_TYPE.Shared, 'TOGGLE_NAV_LIGHTS', value),
+            strobe: (value) => simConnectPost(ACTION_TYPE.Shared, 'STROBES_TOGGLE', value),
+            panel: (value) => simConnectPost(ACTION_TYPE.Shared, 'PANEL_LIGHTS_TOGGLE', value)
         }
     },
 
     Navigation: {
         NAV1: {
-            select: () => simConnectPost(simConnectActionType.Shared.NAV1_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.NAV1_STBY_SET, value),
-            swap: () => simConnectPost(simConnectActionType.Shared.NAV1_SWAP, 1),
-            cdi: () => simConnectPost(simConnectActionType.Shared.AP_CDI, 1)               // move to different category?
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'NAV1_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'NAV1_STBY_SET', value),
+            swap: () => simConnectPost(ACTION_TYPE.Shared, 'NAV1_RADIO_SWAP', 1),
         },
         NAV2: {
-            select: () => simConnectPost(simConnectActionType.Shared.NAV2_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.NAV2_STBY_SET, value),
-            swap: () => simConnectPost(simConnectActionType.Shared.NAV2_SWAP, 1),
-            cdi: () => simConnectPost(simConnectActionType.Shared.AP_CDI, 1)               // move to different category?
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'NAV2_SELECT', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'NAV2_STBY_SET', value),
+            swap: () => simConnectPost(ACTION_TYPE.Shared, 'NAV2_RADIO_SWAP', 1),
         },
         ADF: {
-            select: (digitIndex) => simConnectPost(simConnectActionType.Shared['ADF_DIGIT' + (digitIndex + 1) + '_SELECT'], 1),
+            select: (digitIndex) => simConnectPost(ACTION_TYPE.Custom, 'ADF_DIGIT' + (digitIndex + 1) + '_SELECT', 1),
             set: (digitIndex, value, adfValue) => {
                 switch (digitIndex) {
                     case 0:
@@ -116,41 +120,41 @@ export const simActions = {
                     default:
                 }
 
-                simConnectPost(simConnectActionType.Shared.ADF_COMPLETE_SET, adfValue);
+                simConnectPost(ACTION_TYPE.Shared, 'ADF_COMPLETE_SET', adfValue);
             },
-            swap: () => simConnectPost(simConnectActionType.Shared.ADF1_RADIO_SWAP, 1),
-            cardSelect: () => simConnectPost(simConnectActionType.Shared.ADF_CARD_SELECT, 1),
-            cardSet: (value) => simConnectPost(simConnectActionType.Shared.ADF_CARD_SET, value)
+            swap: () => simConnectPost(ACTION_TYPE.Shared, 'ADF1_RADIO_SWAP', 1),
+            cardSelect: () => simConnectPost(ACTION_TYPE.Custom, 'ADF_CARD_SELECT', 1),
+            cardSet: (value) => simConnectPost(ACTION_TYPE.Shared, 'ADF_CARD_SET', value)
         },
         OBS1: {
-            select: () => simConnectPost(simConnectActionType.Shared.OBS1_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.OBS1_SET, value)
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'VOR1_SELECTED' , 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'VOR1_SET' , value)
         },
         OBS2: {
-            select: () => simConnectPost(simConnectActionType.Shared.OBS2_SELECT, 1),
-            set: (value) => simConnectPost(simConnectActionType.Shared.OBS2_SET, value)
+            select: () => simConnectPost(ACTION_TYPE.Custom, 'VOR2_SELECTED', 1),
+            set: (value) => simConnectPost(ACTION_TYPE.Shared, 'VOR2_SET', value)
         },
         DME1: {
-            toggle: () => simConnectPost(simConnectActionType.Shared.DME_NAV1, 1),
+            toggle: () => simConnectPost(ACTION_TYPE.Shared, 'DME1_TOGGLE', 1),
         },
         DME2: {
-            toggle: () => simConnectPost(simConnectActionType.Shared.DME_NAV2, 1),
+            toggle: () => simConnectPost(ACTION_TYPE.Shared, 'DME2_TOGGLE', 1),
         }
     },
 
     Transponder: {
-        select: (digitIndex) => simConnectPost(simConnectActionType.Shared['XPNDR_DIGIT' + (digitIndex + 1) + '_SELECT'], 1),
+        select: (digitIndex) => simConnectPost(ACTION_TYPE.Custom, 'XPNDR_DIGIT' + (digitIndex + 1) + '_SELECT', 1),
         set: (digitIndex, value, xpndrValue) => {
             let xpndr = xpndrValue.split('');
             xpndr[digitIndex] = value;
             xpndr = Number(xpndr.join(''));
-            simConnectPost(simConnectActionType.Shared.XPNDR_SET, xpndr);
+            simConnectPost(ACTION_TYPE.Shared, 'XPNDR_SET', xpndr);
         }
     },
 
     SimRate : {
-        increase: () => simConnectPost(simConnectActionType.Shared.SIM_RATE_INCREASE, 1),
-        decrease: () => simConnectPost(simConnectActionType.Shared.SIM_RATE_DECREASE, 1),
+        increase: () => simConnectPost(ACTION_TYPE.Shared, 'SIM_RATE_INCR', 1),
+        decrease: () => simConnectPost(ACTION_TYPE.Shared, 'SIM_RATE_DECR', 1),
     },
 
     ProfileSpecific:
@@ -159,123 +163,132 @@ export const simActions = {
         G1000NXi: {
             PFD: {
                 Volume: {
-                    vol1Select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_VOL1_SELECT, 1),
-                    vol2Select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_VOL2_SELECT, 1),
+                    vol1Select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_VOL1_KNOB_PUSH', 1),
+                    vol2Select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_VOL2_KNOB_PUSH', 1),
                 },
                 COM: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_COM_SELECT, 1),
-                    swap: () => simConnectPost(simConnectActionType.G1000NXi.PFD_COM_SWAP, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_COM_KNOB_PUSH', 1),
+                    swap: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_COM_Switch', 1),
                 },
                 NAV: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_NAV_SELECT, 1),
-                    swap: () => simConnectPost(simConnectActionType.G1000NXi.PFD_NAV_SWAP, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_NAV_KNOB_PUSH', 1),
+                    swap: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_NAV_Switch', 1),
                 },
                 CRS: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_CRS_SELECT, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_CRS_KNOB_PUSH', 1),
                 },
                 HEADING: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_HEADING_SELECT, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_HEADING_KNOB_PUSH', 1),
                 },
                 Menu: {
-                    directTo: () => simConnectPost(simConnectActionType.G1000NXi.PFD_DIRECTTO, 1),
-                    flightPlan: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FLIGHTPLAN, 1),
-                    procedure: () => simConnectPost(simConnectActionType.G1000NXi.PFD_PROCEDURE, 1),
-                    menu: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MENU, 1),
-                    clear: () => simConnectPost(simConnectActionType.G1000NXi.PFD_CLEAR, 1),
-                    enter: () => simConnectPost(simConnectActionType.G1000NXi.PFD_ENTER, 1),
+                    directTo: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_DIRECTTO', 1),
+                    flightPlan: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FPL_Push', 1),
+                    procedure: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_PROC_Push', 1),
+                    menu: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_MENU_Push', 1),
+                    clear: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_CLR', 1),
+                    enter: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_ENT_Push', 1),
                 },
                 FMS: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_SELECT, 1),
-                    upperInc: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_UPPER_INC, 1),
-                    upperDec: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_UPPER_DEC, 1),
-                    lowerInc: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_LOWER_INC, 1),
-                    lowerDec: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_LOWER_DEC, 1),
-                    upperPush: () => simConnectPost(simConnectActionType.G1000NXi.PFD_FMS_UPPER_PUSH, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'PFD_FMS_SELECTED', 1),
+                    upperInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FMS_Upper_INC', 1),
+                    upperDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FMS_Upper_DEC', 1),
+                    lowerInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FMS_Lower_INC', 1),
+                    lowerDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FMS_Lower_DEC', 1),
+                    upperPush: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_FMS_Upper_PUSH', 1),
                 },
                 MAP: {
                     select: () => {
-                        simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_PUSH, 1);
-                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_SELECT, 1), 250);
+                        simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_PUSH', 1);
+                        setTimeout(() => simConnectPost(ACTION_TYPE.Custom, 'PFD_MAP_SELECTED', 1), 250);
                     },
-                    rangeInc: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_RANGE_INCREASE, 1),
-                    rangeDec: () => simConnectPost(simConnectActionType.G1000NXi.PFD_MAP_RANGE_DECREASE, 1),
-                    joystickPush: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_PUSH, 1),
-                    joystickUp: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_UP, 1),
-                    joystickDown: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_DOWN, 1),
-                    joystickLeft: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_LEFT, 1),
-                    joystickRight: () => simConnectPost(simConnectActionType.G1000NXi.PFD_JOYSTICK_RIGHT, 1),
+                    rangeInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_RANGE_INC', 1),
+                    rangeDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_RANGE_DEC', 1),
+                    joystickPush: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_PUSH', 1),
+                    joystickUp: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_UP', 1),
+                    joystickDown: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_DOWN', 1),
+                    joystickLeft: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_LEFT', 1),
+                    joystickRight: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_JOYSTICK_RIGHT', 1),
                 },
                 SoftKey: {
                     select: (digit) => {
-                        simConnectPost(simConnectActionType.G1000NXi['PFD_SOFTKEY_' + digit], 1);
+                        simConnectPost(ACTION_TYPE.HVar, 'AS1000_PFD_SOFTKEYS_' + digit, 1);
                     },
                 }
             },
             MID: {
-                com1mic: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_MIC_1, 1),
-                com2mic: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_MIC_2, 1),
-                com12swap: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_SWAP, 1),
-                com1: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_1, 1),
-                com2: () => simConnectPost(simConnectActionType.G1000NXi.MID_COM_2, 1),
-                adf: () => simConnectPost(simConnectActionType.G1000NXi.MID_ADF, 1),
-                dme: () => simConnectPost(simConnectActionType.G1000NXi.MID_DME, 1),
-                nav1: () => simConnectPost(simConnectActionType.G1000NXi.MID_NAV_1, 1),
-                nav2: () => simConnectPost(simConnectActionType.G1000NXi.MID_NAV_2, 1),
-                aux: () => simConnectPost(simConnectActionType.G1000NXi.MID_AUX, 1),
+                com1mic: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_COM_Mic_1_Push', 1),
+                com2mic: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_COM_Mic_2_Push', 1),
+                com12swap: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_COM_Swap_1_2_Push', 1),
+                com1: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_COM_1_Push', 1),
+                com2: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_COM_2_Push' , 1),
+                adf: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_ADF_Push' , 1),
+                dme: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_DME_Push', 1),
+                nav1: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_NAV_1_Push', 1),
+                nav2: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_NAV_2_Push', 1),
+                aux: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MID_AUX_Push', 1),
             },
             MFD: {
                 Volume: {
-                    vol1Select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_VOL1_SELECT, 1),
-                    vol2Select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_VOL2_SELECT, 1),
+                    vol1Select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_VOL1_KNOB_PUSH', 1),
+                    vol2Select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_VOL2_KNOB_PUSH', 1),
                 },
                 COM: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_COM_SELECT, 1),
-                    swap: () => simConnectPost(simConnectActionType.G1000NXi.MFD_COM_SWAP, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_COM_KNOB_PUSH', 1),
+                    swap: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_COM_Switch', 1),
                 },
                 NAV: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_NAV_SELECT, 1),
-                    swap: () => simConnectPost(simConnectActionType.G1000NXi.MFD_NAV_SWAP, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_NAV_KNOB_PUSH', 1),
+                    swap: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_NAV_Switch', 1),
                 },
                 CRS: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_CRS_SELECT, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_CRS_KNOB_PUSH', 1),
                 },
                 HEADING: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_HEADING_SELECT, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_HEADING_KNOB_PUSH', 1),
                 },
                 Menu: {
-                    directTo: () => simConnectPost(simConnectActionType.G1000NXi.MFD_DIRECTTO, 1),
-                    flightPlan: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FLIGHTPLAN, 1),
-                    procedure: () => simConnectPost(simConnectActionType.G1000NXi.MFD_PROCEDURE, 1),
-                    menu: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MENU, 1),
-                    clear: () => simConnectPost(simConnectActionType.G1000NXi.MFD_CLEAR, 1),
-                    enter: () => simConnectPost(simConnectActionType.G1000NXi.MFD_ENTER, 1),
+                    directTo: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_DIRECTTO', 1),
+                    flightPlan: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FPL_Push', 1),
+                    procedure: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_PROC_Push', 1),
+                    menu: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_MENU_Push', 1),
+                    clear: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_CLR', 1),
+                    enter: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_ENT_Push', 1),
                 },
                 FMS: {
-                    select: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_SELECT, 1),
-                    upperInc: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_UPPER_INC, 1),
-                    upperDec: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_UPPER_DEC, 1),
-                    lowerInc: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_LOWER_INC, 1),
-                    lowerDec: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_LOWER_DEC, 1),
-                    upperPush: () => simConnectPost(simConnectActionType.G1000NXi.MFD_FMS_UPPER_PUSH, 1),
+                    select: () => simConnectPost(ACTION_TYPE.Custom, 'MFD_FMS_SELECTED', 1),
+                    upperInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FMS_Upper_INC', 1),
+                    upperDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FMS_Upper_DEC', 1),
+                    lowerInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FMS_Lower_INC', 1),
+                    lowerDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FMS_Lower_DEC', 1),
+                    upperPush: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_FMS_Upper_PUSH', 1),
                 },
                 MAP: {
                     select: () => {
-                        simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_PUSH, 1);
-                        setTimeout(() => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_SELECT, 1), 250);
+                        simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_PUSH', 1);
+                        setTimeout(() => simConnectPost(ACTION_TYPE.Custom, 'MFD_MAP_SELECTED', 1), 250);
                     },
-                    rangeInc: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_RANGE_INCREASE, 1),
-                    rangeDec: () => simConnectPost(simConnectActionType.G1000NXi.MFD_MAP_RANGE_DECREASE, 1),
-                    joystickPush: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_PUSH, 1),
-                    joystickUp: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_UP, 1),
-                    joystickDown: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_DOWN, 1),
-                    joystickLeft: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_LEFT, 1),
-                    joystickRight: () => simConnectPost(simConnectActionType.G1000NXi.MFD_JOYSTICK_RIGHT, 1),
+                    rangeInc: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_RANGE_INC', 1),
+                    rangeDec: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_RANGE_DEC', 1),
+                    joystickPush: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_PUSH', 1),
+                    joystickUp: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_UP', 1),
+                    joystickDown: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_DOWN', 1),
+                    joystickLeft: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_LEFT', 1),
+                    joystickRight: () => simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_JOYSTICK_RIGHT', 1),
                 },
                 SoftKey: {
                     select: (digit) => {
-                        simConnectPost(simConnectActionType.G1000NXi['MFD_SOFTKEY_' + digit], 1);
+                        simConnectPost(ACTION_TYPE.HVar, 'AS1000_MFD_SOFTKEYS_' + digit, 1);
                     },
                 }
+            },
+        },
+
+        // A320 and A32NX
+        A320: {
+            MCDU: {
+                buttonSelect: (btn) => { 
+                    simConnectPost(ACTION_TYPE.HVar, 'A320_Neo_CDU_1_BTN_' + btn, 1);
+                },
             }
         }
     }

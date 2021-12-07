@@ -5,6 +5,7 @@ let replaceMapNode = [];
 let htmluiRoot; 
 
 let targetedPlane, targetPanel, socket, socketRetryInterval;
+let toBeDeletedNodeList = [];
 
 const start = (planeType, panel) => {
     targetedPlane = planeType.toLowerCase();
@@ -34,14 +35,20 @@ const start = (planeType, panel) => {
             break;
     }
 
+    // ** IMPORTANT ** clear deleted nodes at time interval
     setInterval(() => {
         let garbageBin = document.getElementById('garbageBin');
-        console.log('garbageBin length..............................................' + garbageBin.children.length);
-        if(garbageBin.children.length > 0)
+
+        for(let i = 0; i < toBeDeletedNodeList.length; i++)
         {
-            for(let i = garbageBin.children.length - 1; i >= 0; i--)
-                garbageBin.removeChild(garbageBin.children[i]);
+            let deletedNode = getElementsByName(toBeDeletedNodeList[i]);
+
+            if(deletedNode !== undefined)
+                garbageBin.appendChild(deletedNode);
         }
+
+        toBeDeletedNodeList.length = 0;
+        garbageBin.innerHTML = '';
     }, 5000);
 }
 
@@ -167,9 +174,14 @@ const socketReceivedMessage = (msg) => {
                     if(data.params.parentId === Number(document.body.getAttribute('name')))
                         data.params.nodes.length = 1;
                     
+                    let frag = document.createDocumentFragment();
+
                     data.params.nodes.forEach((node) => {
-                        parent.appendChild(createElement(node, parent.tagName));
+                        frag.appendChild(createElement(node, parent.tagName));
                     });
+
+                    if(data.params.nodes.length > 0)
+                        parent.appendChild(frag);
     
                     forceRerender(data.params.parentId);  // force rerender
                 }
@@ -322,7 +334,7 @@ const createElement = (node, parentTag) => {
         let el = document.createElement('place-holder');
         el.setAttribute('name', node.nodeId);
         el.textContent = node.nodeValue;
-        return el;
+        return el;        
     }
 
     if(node.nodeType === 1)
@@ -380,66 +392,17 @@ const createElement = (node, parentTag) => {
     return null;
 }
 
-const modifiedElement  = (node, parentTag) => {
-
-}
-
 const removeElement = (data) => {
     let node = getElementsByName(data.nodeId);
-    let parentNode = getElementsByName(data.parentNodeId);
     
     if(node !== undefined)
     {
-        if(targetedPlane === 'fbwa32nx' && targetedPanel === 'cdu')     // one off for FBWA32NX CDU. Constant adding and removing of nodes cause flickering. This fix has some performance penalty.
-        {
-            node.setAttribute('deleted', 'true');
-            node.style.display = 'none';
-            moveNodetoGarbageBin(data.parentNodeId);        
-        }
-        else
-        {
-            parentNode.removeChild(node);
-        }
+        node.setAttribute('deleted', 'true');
+        toBeDeletedNodeList.push(data.nodeId);
     }
 
     delete node;
 }
-
-const moveNodetoGarbageBin = (nodeId) => {
-
-    let deletedNodes = $('[name=' + nodeId + ']').find('[deleted=true]');
-    for(let i = 0; i < deletedNodes.length; i++)
-    {
-        let childNodeId = deletedNodes[i].getAttribute('name');
-
-        if(IsAllChildrenDeleted(childNodeId))
-        {
-            let deletedNode = getElementsByName(childNodeId);
-            deletedNode.removeAttribute('deleted');
-            let garbageBin = document.getElementById('garbageBin');
-            garbageBin.appendChild(deletedNode);
-        }
-    }
-}
-
-const IsAllChildrenDeleted = (nodeId) => {
-    let node = $('[name=' + nodeId + ']')[0];
-    if(node.children.length === 0)
-        return true;
-    
-    for(let i = 0; i < node.children.length; i++)
-    {
-        console.log(node.children[i].getAttribute('name'));
-        if(!IsAllChildrenDeleted(node.children[i].getAttribute('name')))
-        {
-            console.log(node.children[i].getAttribute('name') + ':false');
-            return false;
-        }
-    }
-
-    return true;
-}
-
 
 const setElementAttributes = (element, attributes) => {
     if(element !== undefined && attributes !== undefined)
@@ -502,24 +465,17 @@ const handleInsertNode = (data) => {
 
     if (data.node.nodeType === 3)
     {
-       if(data.node.nodeValue.match(/{(.*?)}/)) return;   // ignore messed up data issue in fbwA32nx CDU  (eg. {cyan}113{end}{small}   {end} F={green}131{end})
+        if(data.node.nodeValue.match(/{(.*?)}/)) return;   // ignore messed up data issue in fbwA32nx CDU  (eg. {cyan}113{end}{small}   {end} F={green}131{end})
 
         let newElement = createElement(data.node, parent.tagName);
         if(typeof newElement === 'string') {
             if(parent.textContent !== newElement)
                 parent.textContent = newElement;
-
-            // remove element after insert to prevent flickering
-            // let reusedElement = $('[name=' + data.parentNodeId + ']').find('[deleted=true]').next();
-            // let garbageBin = document.getElementById('garbageBin');
-            // garbageBin.appendChild(reusedElement[0]);
         }
         else
         {
             parent.append(newElement);
         }
-
-
     }
     else if (data.node.nodeType === 1) {
         let newElement = createElement(data.node, parent.tagName);
@@ -530,17 +486,13 @@ const handleInsertNode = (data) => {
         else
             parent.append(newElement);
     }
-}
 
-handleModifiedNode = (data) => {
-    let parent = getElementsByName(data.parentNodeId);
-
-    if (data.node.nodeType === 3)
+    let deletedNodes = $('vcockpit-panel').find('[deleted=true]').css('display', 'none');
+    if(deletedNodes.length > 0)
     {
-        if(data.node.nodeValue.match(/{(.*?)}/)) return;   // ignore messed up data issue in fbwA32nx CDU  (eg. {cyan}113{end}{small}   {end} F={green}131{end})
-
-        let reusedElement = $('[deleted=true]').next();
-
+        garbageBin = $('#garbageBin');
+        for(let i = 0; i < deletedNodes.length; i++)
+            garbageBin.append(deletedNodes[i]);
     }
 }
 

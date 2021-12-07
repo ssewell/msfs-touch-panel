@@ -37,7 +37,6 @@ const useStyles = props => makeStyles((theme) => ({
     g1000NXiContainer: {
         position: 'relative',
         backgroundColor: 'transparent',
-        touchAction: 'none',
         margin: '3.5em auto 0 auto', 
         height: `calc(${props.windowHeight - 1}px - 3.6em)`, 
         aspectRatio: 1
@@ -45,7 +44,6 @@ const useStyles = props => makeStyles((theme) => ({
     panelContainer: {
         position: 'relative',
         backgroundColor: 'transparent',
-        touchAction: 'none',
         margin: '2em auto 0 auto', 
         height: `calc(${props.windowHeight - 1}px - 2em)`,
         aspectRatio: 1
